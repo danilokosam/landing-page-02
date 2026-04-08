@@ -21,6 +21,7 @@ const isFillIcon = ["facebook", "twitter", "instagram"].includes(name);
   stroke-linejoin="round"
   aria-hidden="true"
 >
+  {name === "menu" && <path d="M4 6h16M4 12h16M4 18h16" />}
   {/* Filler icons */}
   {
     name === "facebook" && (
