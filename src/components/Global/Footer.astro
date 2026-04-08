@@ -72,17 +72,20 @@ const footerOptions = [
 ]
 ---
 
-<footer class="w-full h-96 border-t border-gray-400/50">
+<footer class="w-full border-t border-slate-200 bg-white/80">
 	<div class="container w-full mx-auto max-w-7xl flex flex-col md:flex-row text-start justify-center md:justify-between py-20 px-2 lg:px-0">
-		<div class="w-full md:w-96 py-10 md:py-0">LOGO</div>
+		<div class="w-full md:w-96 py-10 md:py-0">
+      <p class="text-2xl font-bold">NOVA</p>
+      <p class="mt-2 max-w-72 text-sm text-slate-500">We build bold digital products and high-performance brand experiences.</p>
+    </div>
 		<nav class="w-full grid grid-cols-2 md:grid-cols-4 text-start gap-10">
             {footerOptions.map((el) => (
               <div>
                 <h3 class="font-bold">{el.title}</h3>
-                <ul>
+                <ul class="mt-3 space-y-2">
                   {el.labels.map((item) => (
-                    <li class="text-gray-500">
-                      <a href={item.url}>{item.label}</a>
+                    <li class="text-slate-500">
+                      <a class="transition-colors hover:text-slate-900" href={item.url}>{item.label}</a>
                     </li>
                   ))}
                 </ul>
