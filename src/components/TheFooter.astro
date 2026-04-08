@@ -1,17 +1,94 @@
 ---
 
+const footerOptions = [
+    {
+        title: "Follow US",
+        labels: [
+            {
+                label: "Github",
+                url: "#"
+            },
+            {
+                label: "Twitter",
+                url: "#"
+            },
+            {
+                label: "Dribble",
+                url: "#"
+            },
+        ]
+    },
+    {
+        title: "Platforms",
+        labels: [
+            {
+                label: "Web",
+                url: "#"
+            },
+            {
+                label: "Mobile",
+                url: "#"
+            },
+            {
+                label: "Desktop",
+                url: "#"
+            },
+        ]
+    },
+    {
+        title: "About",
+        labels: [
+            {
+                label: "Features",
+                url: "#"
+            },
+            {
+                label: "Pricing",
+                url: "#"
+            },
+            {
+                label: "FAQ",
+                url: "#"
+            },
+        ]
+    },
+    {
+        title: "Community",
+        labels: [
+            {
+                label: "Youtube",
+                url: "#"
+            },
+            {
+                label: "Discord",
+                url: "#"
+            },
+            {
+                label: "Twitch",
+                url: "#"
+            },
+        ]
+    },
+]
 ---
 
-<footer>
-    <div>
-        LOGO
-    </div>
-    <nav>
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </nav>
+
+<footer class="w-full h-96 border-2">
+	<div class="container w-full mx-auto max-w-7xl flex justify-between py-20 px-2 lg:px-0">
+		<div class="w-96">LOGO</div>
+		<nav class="flex w-full justify-around border-2 border-red-300 gap-10">
+            {footerOptions.map((el) => (
+              <div>
+                <h3 class="font-bold">{el.title}</h3>
+                <ul>
+                  {el.labels.map((item) => (
+                    <li class="text-gray-500">
+                      <a href={item.url}>{item.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
+	</div>
 </footer>
