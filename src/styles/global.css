@@ -1,5 +1,106 @@
 @import "tailwindcss";
 
-html {
-  scrollbar-gutter: stable;
+@layer base {
+  :root {
+    --bg: #ffffff;
+    --bg-soft: #f8fafc;
+    --surface: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --primary: #6d7cff;
+    --secondary: #18d5c4;
+    --ring: #6366f166;
+    --bg-glow-1: #e7edff;
+    --bg-glow-2: #e3faf6;
+    --card-border: #e2e8f0;
+    --card-bg: #ffffffe6;
+    --btn-secondary-text: #334155;
+    --btn-secondary-border: #cbd5e1;
+    --btn-secondary-hover: #f1f5f9;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #070b14;
+      --bg-soft: #0d1424;
+      --surface: #111a2e;
+      --text: #eef4ff;
+      --muted: #9fb0d1;
+      --primary: #6d7cff;
+      --secondary: #18d5c4;
+      --ring: #7f8cff55;
+      --bg-glow-1: #1a2b56;
+      --bg-glow-2: #0f8f84;
+      --card-border: #47556966;
+      --card-bg: #0f172ae6;
+      --btn-secondary-text: #e2e8f0;
+      --btn-secondary-border: #64748b99;
+      --btn-secondary-hover: #1e293b99;
+    }
+  }
+
+  html,
+  body {
+    scrollbar-gutter: stable;
+    min-height: 100%;
+    background:
+      radial-gradient(circle at 15% 0%, var(--bg-glow-1) 0%, transparent 34%),
+      radial-gradient(circle at 85% 0%, var(--bg-glow-2) 0%, transparent 28%),
+      var(--bg);
+    color: var(--text);
+    font-family: Inter, "Segoe UI", Roboto, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .agency-container {
+    @apply mx-auto w-full max-w-7xl px-4 lg:px-0;
+  }
+
+  .hero-title {
+    @apply text-4xl font-semibold leading-tight md:text-6xl;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(100deg, #6d7cff 0%, #6d7cff 45%, #18d5c4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .btn-primary {
+    @apply rounded-xl bg-indigo-500 px-6 py-3 font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-indigo-400;
+    box-shadow: 0 8px 28px #6d7cff66;
+  }
+
+  .btn-secondary {
+    @apply rounded-xl border px-6 py-3 font-semibold transition-colors;
+    border-color: var(--btn-secondary-border);
+    color: var(--btn-secondary-text);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--btn-secondary-hover);
+  }
+
+  .glass-card {
+    @apply rounded-2xl border p-6 shadow-sm backdrop-blur-sm;
+    border-color: var(--card-border);
+    background-color: var(--card-bg);
+  }
+
+  .section-title {
+    @apply text-2xl font-semibold md:text-3xl;
+  }
+
+  .section-muted {
+    color: var(--muted);
+  }
 }
