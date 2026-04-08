@@ -1,4 +1,6 @@
 ---
+import HeadingText from "@components/UI/HeadingText.astro"
+
 
 const footerOptions = [
     {
@@ -73,9 +75,10 @@ const footerOptions = [
 ---
 
 <footer class="w-full border-t border-slate-200 bg-white/80">
-	<div class="container w-full mx-auto max-w-7xl flex flex-col md:flex-row text-start justify-center md:justify-between py-20 px-2 lg:px-0">
+	<div class="container w-full mx-auto max-w-7xl flex flex-col md:flex-row text-start justify-center md:justify-between py-20 px-12 lg:px-0">
 		<div class="w-full md:w-96 py-10 md:py-0">
-      <p class="text-2xl font-bold">NOVA</p>
+            <HeadingText text="Nova" level={2} textGradient="nova"/>
+      
       <p class="mt-2 max-w-72 text-sm text-slate-500">We build bold digital products and high-performance brand experiences.</p>
     </div>
 		<nav class="w-full grid grid-cols-2 md:grid-cols-4 text-start gap-10">
