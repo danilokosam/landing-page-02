@@ -1,99 +1,109 @@
 ---
-import HeadingText from "@components/UI/HeadingText.astro"
-
+import HeadingText from "@components/UI/HeadingText.astro";
 
 const footerOptions = [
-    {
-        title: "Follow US",
-        labels: [
-            {
-                label: "Github",
-                url: "#"
-            },
-            {
-                label: "Twitter",
-                url: "#"
-            },
-            {
-                label: "Dribble",
-                url: "#"
-            },
-        ]
-    },
-    {
-        title: "Platforms",
-        labels: [
-            {
-                label: "Web",
-                url: "#"
-            },
-            {
-                label: "Mobile",
-                url: "#"
-            },
-            {
-                label: "Desktop",
-                url: "#"
-            },
-        ]
-    },
-    {
-        title: "About",
-        labels: [
-            {
-                label: "Features",
-                url: "#"
-            },
-            {
-                label: "Pricing",
-                url: "#"
-            },
-            {
-                label: "FAQ",
-                url: "#"
-            },
-        ]
-    },
-    {
-        title: "Community",
-        labels: [
-            {
-                label: "Youtube",
-                url: "#"
-            },
-            {
-                label: "Discord",
-                url: "#"
-            },
-            {
-                label: "Twitch",
-                url: "#"
-            },
-        ]
-    },
-]
+  {
+    title: "Follow US",
+    labels: [
+      {
+        label: "Github",
+        url: "#",
+      },
+      {
+        label: "Twitter",
+        url: "#",
+      },
+      {
+        label: "Dribble",
+        url: "#",
+      },
+    ],
+  },
+  {
+    title: "Platforms",
+    labels: [
+      {
+        label: "Web",
+        url: "#",
+      },
+      {
+        label: "Mobile",
+        url: "#",
+      },
+      {
+        label: "Desktop",
+        url: "#",
+      },
+    ],
+  },
+  {
+    title: "About",
+    labels: [
+      {
+        label: "Features",
+        url: "#",
+      },
+      {
+        label: "Pricing",
+        url: "#",
+      },
+      {
+        label: "FAQ",
+        url: "#",
+      },
+    ],
+  },
+  {
+    title: "Community",
+    labels: [
+      {
+        label: "Youtube",
+        url: "#",
+      },
+      {
+        label: "Discord",
+        url: "#",
+      },
+      {
+        label: "Twitch",
+        url: "#",
+      },
+    ],
+  },
+];
 ---
 
 <footer class="w-full border-t border-slate-200 bg-white/80">
-	<div class="container w-full mx-auto max-w-7xl flex flex-col md:flex-row text-start justify-center md:justify-between py-20 px-12 lg:px-0">
-		<div class="w-full md:w-96 py-10 md:py-0">
-            <HeadingText text="Nova" level={2} textGradient="nova"/>
-      
-      <p class="mt-2 max-w-72 text-sm text-slate-500">We build bold digital products and high-performance brand experiences.</p>
+  <div
+    class="container w-full mx-auto max-w-7xl flex flex-col md:flex-row text-start justify-center md:justify-between py-20 px-12 lg:px-0"
+  >
+    <div class="w-full md:w-96 py-10 md:py-0">
+      <HeadingText text="Nova" level={2} textGradient="nova" />
+
+      <p class="mt-2 max-w-72 text-sm text-slate-500">
+        We build bold digital products and high-performance brand experiences.
+      </p>
     </div>
-		<nav class="w-full grid grid-cols-2 md:grid-cols-4 text-start gap-10">
-            {footerOptions.map((el) => (
-              <div>
-                <h3 class="font-bold">{el.title}</h3>
-                <ul class="mt-3 space-y-2">
-                  {el.labels.map((item) => (
-                    <li class="text-slate-500">
-                      <a class="transition-colors hover:text-slate-900" href={item.url}>{item.label}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </nav>
-	</div>
+    <nav class="w-full grid grid-cols-2 md:grid-cols-4 text-start gap-10">
+      {
+        footerOptions.map((el) => (
+          <div>
+            <h3 class="font-bold">{el.title}</h3>
+            <ul class="mt-3 space-y-2">
+              {el.labels.map((item) => (
+                <li class="text-slate-500">
+                  <a
+                    class="transition-colors hover:text-slate-900"
+                    href={item.url}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </nav>
+  </div>
 </footer>
