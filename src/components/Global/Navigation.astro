@@ -1,5 +1,6 @@
 ---
 import Icon from "@components/UI/Icon.astro";
+import ThemeIcon from "@components/UI/ThemeIcon.astro";
 
 // Navigation items
 const navItems = [
@@ -28,9 +29,10 @@ const currentPath = Astro.url.pathname;
             <a
               href={item.href}
               class={`text-base font-medium transition-colors hover:text-primary-600 ${
-                isActive ? "text-primary-600" : "text-gray-700"
+                isActive ? "text-primary-600" : ""
               }`}
               aria-current={isActive ? "page" : undefined}
+              style="color: var(--text);"
             >
               {item.text}
             </a>
@@ -41,20 +43,26 @@ const currentPath = Astro.url.pathname;
   </ul>
 </nav>
 
-<!-- Mobile Menu Button -->
-<button
-  id="mobile-menu-button"
-  class="lg:hidden p-2 text-gray-700 hover:text-primary-600 focus:outline-none transition-colors relative"
-  aria-label="Toggle Menu"
-  aria-expanded="false"
->
-  <Icon name="menu" class="h-6 w-6" />
-</button>
+<div class="flex items-center gap-2">
+  <!-- Theme toggle SIEMPRE visible -->
+  <ThemeIcon />
+  <!-- Mobile Menu Button -->
+  <button
+    id="mobile-menu-button"
+    class="lg:hidden p-2 transition-colors relative"
+    style="color: var(--text);"
+    aria-label="Toggle Menu"
+    aria-expanded="false"
+  >
+    <Icon name="menu" class="h-6 w-6" />
+  </button>
+</div>
 
 <!-- Mobile Menu Dropdown - Compact & Clean -->
 <div
   id="mobile-menu"
-  class="absolute top-full left-0 right-0 h-dvh bg-white shadow-lg border-t border-gray-100 transform scale-y-0 origin-top transition-transform duration-200 ease-out lg:hidden z-50"
+  class="absolute top-full left-0 right-0 h-dvh shadow-lg border-t transform scale-y-0 origin-top transition-transform duration-200 ease-out lg:hidden z-50"
+  style="background-color: var(--surface); border-color: var(--card-border);"
   role="menu"
   aria-labelledby="mobile-menu-button"
 >
@@ -70,11 +78,13 @@ const currentPath = Astro.url.pathname;
           return (
             <a
               href={item.href}
-              class={`block px-4 py-3 text-sm font-medium rounded-lg transition-colors text-center ${
-                isActive
-                  ? "bg-primary-50 text-primary-600 border border-primary-200"
-                  : "text-gray-700 hover:bg-gray-50 hover:text-primary-600 border border-transparent"
+              class={`block px-4 py-3 text-sm font-medium rounded-lg transition-colors text-center border ${
+                isActive ? "active-link" : ""
               }`}
+              style={`
+    color: ${isActive ? "var(--primary)" : "var(--text)"};
+    border-color: ${isActive ? "rgba(124,140,255,0.35)" : "transparent"};
+  `}
               role="menuitem"
               aria-current={isActive ? "page" : undefined}
             >
@@ -112,6 +122,16 @@ const currentPath = Astro.url.pathname;
   #mobile-menu a[aria-current="page"] {
     font-weight: 600;
   }
+
+  /* Hover (only on non-active links) */
+  #mobile-menu a:hover {
+    background-color: var(--btn-secondary-hover);
+  }
+
+  /* Active */
+  #mobile-menu a.active-link {
+    background-color: rgba(124, 140, 255, 0.12);
+  }
 </style>
 
 <script>
@@ -148,10 +168,13 @@ const currentPath = Astro.url.pathname;
     // Close menu when clicking outside
     document.addEventListener("click", (e) => {
       if (!(e.target instanceof Node)) return;
+
+      const clickedThemeIcon = (e.target as Element).closest("#themeToggle");
       if (
         isMenuOpen &&
         !mobileMenu.contains(e.target) &&
-        !mobileMenuButton.contains(e.target)
+        !mobileMenuButton.contains(e.target) &&
+        !clickedThemeIcon
       ) {
         toggleMobileMenu();
       }
