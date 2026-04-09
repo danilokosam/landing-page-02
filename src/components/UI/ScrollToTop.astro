@@ -1,0 +1,31 @@
+---
+import Icon from "@components/UI/Icon.astro";
+---
+
+<button
+  id="scroll-to-top"
+  class="fixed bottom-4 right-4 p-2 rounded-md shadow-md opacity-0 pointer-events-none transition-opacity duration-300 z-50"
+  style="background-color: var(--primary); color: white;"
+  aria-label="Volver arriba"
+>
+  <Icon name="arrow-up" class="h-5 w-5" />
+</button>
+
+<style>
+  #scroll-to-top.visible {
+    opacity: 90%;
+    pointer-events: auto;
+  }
+</style>
+
+<script>
+  const btn = document.getElementById("scroll-to-top");
+
+  window.addEventListener("scroll", () => {
+    btn?.classList.toggle("visible", window.scrollY > 400);
+  });
+
+  btn?.addEventListener("click", () => {
+    window.scroll({ top: 0, left: 0, behavior: "smooth" });
+  });
+</script>
