@@ -2,9 +2,10 @@
 interface Props {
   name: string;
   class?: string;
+  id?: string;
 }
 
-const { name, class: className } = Astro.props;
+const { name, class: className, id } = Astro.props;
 
 // We define which icons use fill instead of stroke
 const isFillIcon = ["facebook", "twitter", "instagram"].includes(name);
@@ -12,6 +13,7 @@ const isFillIcon = ["facebook", "twitter", "instagram"].includes(name);
 
 <svg
   xmlns="http://www.w3.org/2000/svg"
+  id={id}
   class={className}
   fill={isFillIcon ? "currentColor" : "none"}
   viewBox="0 0 24 24"
@@ -22,6 +24,7 @@ const isFillIcon = ["facebook", "twitter", "instagram"].includes(name);
   aria-hidden="true"
 >
   {name === "menu" && <path d="M4 6h16M4 12h16M4 18h16" />}
+  {name === "close" && <path d="M6 18L18 6M6 6l12 12" />}
   {/* Filler icons */}
   {
     name === "facebook" && (

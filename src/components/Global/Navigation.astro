@@ -44,7 +44,7 @@ const currentPath = Astro.url.pathname;
 </nav>
 
 <div class="flex items-center gap-2">
-  <!-- Theme toggle SIEMPRE visible -->
+  <!-- Theme toggle is always visible -->
   <ThemeIcon />
   <!-- Mobile Menu Button -->
   <button
@@ -54,14 +54,25 @@ const currentPath = Astro.url.pathname;
     aria-label="Toggle Menu"
     aria-expanded="false"
   >
-    <Icon name="menu" class="h-6 w-6" />
+    <span id="icon-wrapper" class="relative block h-6 w-6">
+      <Icon
+        id="icon-menu"
+        name="menu"
+        class="h-6 w-6 absolute inset-0 transition-all duration-300 ease-in-out opacity-100 rotate-0"
+      />
+      <Icon
+        id="icon-close"
+        name="close"
+        class="h-6 w-6 absolute inset-0 transition-all duration-300 ease-in-out opacity-0 -rotate-90"
+      />
+    </span>
   </button>
 </div>
 
 <!-- Mobile Menu Dropdown - Compact & Clean -->
 <div
   id="mobile-menu"
-  class="absolute top-full left-0 right-0 h-dvh shadow-lg border-t transform scale-y-0 origin-top transition-transform duration-200 ease-out lg:hidden z-50"
+  class="absolute top-full left-0 right-0 h-dvh shadow-lg border-t lg:hidden z-50"
   style="background-color: var(--surface); border-color: var(--card-border);"
   role="menu"
   aria-labelledby="mobile-menu-button"
@@ -107,15 +118,34 @@ const currentPath = Astro.url.pathname;
     transition: transform 0.2s ease;
   }
 
-  /* Mobile menu show/hide states */
-  #mobile-menu.show {
-    --tw-scale-y: 1;
-    transform: scale(1, 1);
+  /* Slide down suave */
+  #mobile-menu {
+    transform-origin: top;
+    transition:
+      transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scaleY(0);
+    opacity: 0;
+    pointer-events: none;
   }
 
-  /* Smooth hover effects */
-  #mobile-menu a {
-    transition: all 0.15s ease;
+  #mobile-menu.show {
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Rotación del icono */
+  #icon-menu {
+    transition:
+      opacity 0.25s ease,
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  #icon-close {
+    transition:
+      opacity 0.25s ease,
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Active state styling */
@@ -139,6 +169,8 @@ const currentPath = Astro.url.pathname;
   document.addEventListener("DOMContentLoaded", () => {
     const mobileMenuButton = document.getElementById("mobile-menu-button");
     const mobileMenu = document.getElementById("mobile-menu");
+    const iconMenu = document.getElementById("icon-menu");
+    const iconClose = document.getElementById("icon-close");
 
     if (!mobileMenuButton || !mobileMenu) return;
 
@@ -152,10 +184,22 @@ const currentPath = Astro.url.pathname;
         // Show menu
         mobileMenu.classList.add("show");
         mobileMenuButton.setAttribute("aria-expanded", "true");
+        // Hamburguesa → desaparece girando
+        iconMenu?.classList.replace("opacity-100", "opacity-0");
+        iconMenu?.classList.replace("rotate-0", "rotate-90");
+        // X → aparece girando
+        iconClose?.classList.replace("opacity-0", "opacity-100");
+        iconClose?.classList.replace("-rotate-90", "rotate-0");
       } else {
         // Hide menu
         mobileMenu.classList.remove("show");
         mobileMenuButton.setAttribute("aria-expanded", "false");
+        // X → desaparece girando
+        iconClose?.classList.replace("opacity-100", "opacity-0");
+        iconClose?.classList.replace("rotate-0", "-rotate-90");
+        // Hamburguesa → aparece girando
+        iconMenu?.classList.replace("opacity-0", "opacity-100");
+        iconMenu?.classList.replace("rotate-90", "rotate-0");
       }
     };
 
