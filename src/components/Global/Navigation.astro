@@ -94,7 +94,7 @@ const currentPath = Astro.url.pathname;
               }`}
               style={`
     color: ${isActive ? "var(--primary)" : "var(--text)"};
-    border-color: ${isActive ? "rgba(124,140,255,0.35)" : "transparent"};
+    border-color: ${isActive ? "var(--primary-border)" : "transparent"};
   `}
               role="menuitem"
               aria-current={isActive ? "page" : undefined}
@@ -160,7 +160,7 @@ const currentPath = Astro.url.pathname;
 
   /* Active */
   #mobile-menu a.active-link {
-    background-color: rgba(124, 140, 255, 0.12);
+    background-color: var(--primary-soft);
   }
 </style>
 

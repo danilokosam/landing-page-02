@@ -24,6 +24,10 @@
     --btn-secondary-border: #cbd5e1;
     --btn-secondary-hover: #f1f5f9;
     --accent-lime: #166534; /* Green 800 for visibility on light bg */
+
+    --surface-inset: #0f172a;
+    --primary-soft: rgba(109, 124, 255, 0.12);
+    --primary-border: rgba(109, 124, 255, 0.35);
   }
 
   /* =========================
@@ -52,6 +56,10 @@
     --btn-secondary-border: #47556988;
     --btn-secondary-hover: #1e293b80;
     --accent-lime: #bef264; /* Vibrant Lime for dark bg */
+
+    --surface-inset: #0f172a;
+    --primary-soft: rgba(124, 140, 255, 0.12);
+    --primary-border: rgba(124, 140, 255, 0.35);
   }
 
   /* =========================
@@ -82,6 +90,10 @@
       --btn-secondary-border: #47556988;
       --btn-secondary-hover: #1e293b80;
       --accent-lime: #bef264;
+
+      --surface-inset: #0f172a;
+      --primary-soft: rgba(124, 140, 255, 0.12);
+      --primary-border: rgba(124, 140, 255, 0.35);
     }
   }
 
