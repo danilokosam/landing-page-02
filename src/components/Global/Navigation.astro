@@ -184,20 +184,24 @@ const currentPath = Astro.url.pathname;
         // Show menu
         mobileMenu.classList.add("show");
         mobileMenuButton.setAttribute("aria-expanded", "true");
-        // Hamburguesa → desaparece girando
+        // Prevent background scrolling
+        document.body.style.overflow = "hidden";
+        // Hamburguesa → disappears as it spins
         iconMenu?.classList.replace("opacity-100", "opacity-0");
         iconMenu?.classList.replace("rotate-0", "rotate-90");
-        // X → aparece girando
+        // X → appears spinning
         iconClose?.classList.replace("opacity-0", "opacity-100");
         iconClose?.classList.replace("-rotate-90", "rotate-0");
       } else {
         // Hide menu
         mobileMenu.classList.remove("show");
         mobileMenuButton.setAttribute("aria-expanded", "false");
-        // X → desaparece girando
+        // Restore background scrolling
+        document.body.style.overflow = "";
+        // X → disappears spinning
         iconClose?.classList.replace("opacity-100", "opacity-0");
         iconClose?.classList.replace("rotate-0", "-rotate-90");
-        // Hamburguesa → aparece girando
+        // Hamburguesa → appears spinning
         iconMenu?.classList.replace("opacity-0", "opacity-100");
         iconMenu?.classList.replace("rotate-90", "rotate-0");
       }
