@@ -23,6 +23,7 @@
     --btn-secondary-text: #334155;
     --btn-secondary-border: #cbd5e1;
     --btn-secondary-hover: #f1f5f9;
+    --accent-lime: #166534; /* Green 800 for visibility on light bg */
   }
 
   /* =========================
@@ -50,6 +51,7 @@
     --btn-secondary-text: #cbd5f5;
     --btn-secondary-border: #47556988;
     --btn-secondary-hover: #1e293b80;
+    --accent-lime: #bef264; /* Vibrant Lime for dark bg */
   }
 
   /* =========================
@@ -79,6 +81,7 @@
       --btn-secondary-text: #cbd5f5;
       --btn-secondary-border: #47556988;
       --btn-secondary-hover: #1e293b80;
+      --accent-lime: #bef264;
     }
   }
 
