@@ -9,9 +9,6 @@ const navItems = [
   { text: "Process", href: "#process" },
   { text: "FAQ", href: "#faq" },
 ];
-
-// Get the current URL path to highlight the active link
-const currentPath = Astro.url.pathname;
 ---
 
 <!-- Desktop Navigation -->
@@ -19,21 +16,12 @@ const currentPath = Astro.url.pathname;
   <ul class="flex items-center space-x-6">
     {
       navItems.map((item) => {
-        // Determine if a link is active based on exact match or sub-path matching,
-        // excluding the root path from prefix matching to avoid false positives.
-        const isActive =
-          currentPath === item.href ||
-          (item.href !== "/" && currentPath.startsWith(item.href));
-
         return (
           <li>
             <a
               href={item.href}
-              class={`text-base font-medium transition-colors hover:text-primary-600 ${
-                isActive ? "text-primary-600" : ""
-              }`}
-              aria-current={isActive ? "page" : undefined}
-              style="color: var(--text);"
+              class="nav-link text-base font-medium transition-all duration-200 relative"
+              data-href={item.href}
             >
               {item.text}
             </a>
@@ -83,22 +71,11 @@ const currentPath = Astro.url.pathname;
     <div class="grid grid-cols-2 gap-3">
       {
         navItems.map((item) => {
-          const isActive =
-            currentPath === item.href ||
-            (item.href !== "/" && currentPath.startsWith(item.href));
-
           return (
             <a
               href={item.href}
-              class={`block px-4 py-3 text-sm font-medium rounded-lg transition-colors text-center border ${
-                isActive ? "active-link" : ""
-              }`}
-              style={`
-    color: ${isActive ? "var(--primary)" : "var(--text)"};
-    border-color: ${isActive ? "var(--primary-border)" : "transparent"};
-  `}
-              role="menuitem"
-              aria-current={isActive ? "page" : undefined}
+              class="mobile-nav-link block px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 text-center border"
+              data-href={item.href}
             >
               {item.text}
             </a>
@@ -149,23 +126,91 @@ const currentPath = Astro.url.pathname;
       transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Active state styling */
-  #mobile-menu a[aria-current="page"] {
-    font-weight: 600;
-  }
-
-  /* Hover (only on non-active links) */
-  #mobile-menu a:hover {
-    background-color: var(--btn-secondary-hover);
-  }
-
-  /* Active */
-  #mobile-menu a.active-link {
+  /* Mobile nav active link styling */
+  .mobile-nav-link.active {
+    color: var(--primary);
+    font-weight: 700;
+    border-color: var(--ring);
     background-color: var(--primary-soft);
+  }
+
+  .mobile-nav-link:not(.active) {
+    color: var(--text);
+    border-color: transparent;
+  }
+
+  /* Hover effect for mobile links */
+  .mobile-nav-link:hover {
+    background-color: var(--btn-secondary-hover);
   }
 </style>
 
 <script>
+  // Function to update active nav link based on current hash
+  const updateActiveLink = () => {
+    const currentHash = window.location.hash || "#services"; // default to #services
+    
+    // Update desktop nav links
+    const navLinks = document.querySelectorAll(".nav-link") as NodeListOf<HTMLAnchorElement>;
+    navLinks.forEach((link) => {
+      const href = link.getAttribute("data-href");
+      const isActive = href === currentHash;
+      
+      if (isActive) {
+        link.setAttribute("aria-current", "page");
+        link.style.color = "var(--primary)";
+        link.style.fontWeight = "700";
+        link.style.opacity = "1";
+      } else {
+        link.removeAttribute("aria-current");
+        link.style.color = "var(--text)";
+        link.style.fontWeight = "500";
+        link.style.opacity = "0.85";
+      }
+    });
+
+    // Update mobile nav links
+    const mobileNavLinks = document.querySelectorAll(".mobile-nav-link") as NodeListOf<HTMLAnchorElement>;
+    mobileNavLinks.forEach((link) => {
+      const href = link.getAttribute("data-href");
+      const isActive = href === currentHash;
+      
+      if (isActive) {
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.classList.remove("active");
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  // Add hover effects for desktop nav links
+  document.addEventListener("DOMContentLoaded", () => {
+    const navLinks = document.querySelectorAll(".nav-link") as NodeListOf<HTMLAnchorElement>;
+    navLinks.forEach((link) => {
+      link.addEventListener("mouseover", function() {
+        this.style.opacity = "1";
+        this.style.textDecoration = "underline";
+        this.style.textDecorationColor = "currentColor";
+        this.style.textUnderlineOffset = "6px";
+        this.style.textDecorationThickness = "2px";
+      });
+      
+      link.addEventListener("mouseout", function() {
+        this.style.textDecoration = "none";
+        const isActive = this.getAttribute("aria-current") === "page";
+        this.style.opacity = isActive ? "1" : "0.85";
+      });
+    });
+
+    // Initial update
+    updateActiveLink();
+  });
+
+  // Update active link when hash changes
+  window.addEventListener("hashchange", updateActiveLink);
+
   // Mobile menu functionality
   document.addEventListener("DOMContentLoaded", () => {
     const mobileMenuButton = document.getElementById("mobile-menu-button");
@@ -230,8 +275,8 @@ const currentPath = Astro.url.pathname;
     });
 
     // Close menu when clicking a navigation link
-    const navLinks = mobileMenu?.querySelectorAll('a[href^="/"]');
-    navLinks?.forEach((link) => {
+    const mobileLinks = mobileMenu?.querySelectorAll("a[data-href]");
+    mobileLinks?.forEach((link) => {
       link.addEventListener("click", () => {
         if (isMenuOpen) {
           setTimeout(() => toggleMobileMenu(), 100);
