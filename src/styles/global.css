@@ -137,13 +137,13 @@
   }
 
   .btn-primary {
-    @apply rounded-xl px-6 py-3 font-semibold text-white transition-all duration-200 hover:-translate-y-0.5;
+    @apply rounded-xl px-6 py-3.5 font-semibold text-white transition-all duration-200 hover:-translate-y-0.5;
     background: linear-gradient(135deg, #7c8cff, #1dd4bf);
     box-shadow: 0 10px 30px rgba(124, 140, 255, 0.35);
   }
 
   .btn-secondary {
-    @apply rounded-xl border px-6 py-3 font-semibold transition-colors;
+    @apply rounded-xl border px-6 py-3.5 font-semibold transition-colors;
     border-color: var(--btn-secondary-border);
     color: var(--btn-secondary-text);
   }
