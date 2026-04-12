@@ -4,9 +4,9 @@ import AboutSection from "@components/Sections/AboutSection.astro";
 import HowItWorks from "@components/Sections/HowItWorks.astro";
 import Sponsors from "@components/Sections/Sponsors.astro";
 import FaqSection from "@components/Sections/FaqSection.astro";
-import TestimonialCard from "@components/UI/TestimonialCard.astro";
 import TestimonialSection from "@components/Sections/TestimonialSection.astro";
 import ServicesSection from "@components/Sections/ServicesSection.astro";
+import HeroSection from "@components/Sections/HeroSection.astro";
 ---
 
 <BaseLayout
@@ -14,56 +14,8 @@ import ServicesSection from "@components/Sections/ServicesSection.astro";
   description="We help brands stand out through creative web design, strategic branding, and growth-focused marketing services. Build your digital presence with MarketingPlus."
 >
   <main class="agency-container py-12 md:py-20">
-    <section class="grid items-center gap-10 md:grid-cols-2">
-      <div class="space-y-6">
-        <p
-          class="inline-block rounded-full border border-indigo-300/30 bg-indigo-500/10 px-4 py-1 text-sm text-indigo-200"
-        >
-          Creative Digital Agency
-        </p>
-
-        <h1 class="hero-title">
-          Build a brand that
-
-          <span class="hero-gradient">stands out online</span>
-        </h1>
-
-        <p class="max-w-xl section-muted">
-          We design websites, launch campaigns and craft experiences that turn
-          visitors into loyal customers.
-        </p>
-
-        <div class="flex flex-wrap gap-3">
-          <a class="btn-primary" href="#">Start Project</a>
-
-          <a class="btn-secondary" href="#">View Work</a>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-2 gap-4">
-        <div class="glass-card">
-          <p class="text-3xl font-bold text-indigo-400">+120</p>
-
-          <p class="section-muted">Projects launched</p>
-        </div>
-
-        <div class="glass-card">
-          <p class="text-3xl font-bold text-teal-300">97%</p>
-
-          <p class="section-muted">Client retention</p>
-        </div>
-
-        <div class="glass-card col-span-2">
-          <p class="text-lg font-semibold">From strategy to scaling</p>
-
-          <p class="section-muted">
-            Branding, UX/UI, development and performance marketing in one team.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <ServicesSection />
+    <HeroSection />
+    <ServicesSection id="services" />
     <AboutSection id="about" />
     <Sponsors />
     <HowItWorks id="process" />
