@@ -153,10 +153,9 @@
   }
 
   .glass-card {
-    @apply rounded-2xl border p-6 backdrop-blur-md;
+    @apply rounded-2xl border p-6 backdrop-blur-md shadow shadow-md;
     border-color: var(--card-border);
     background-color: var(--card-bg);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
   }
 
   .section-title {

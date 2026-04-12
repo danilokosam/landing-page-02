@@ -2,121 +2,147 @@
 import HeadingText from "@components/UI/HeadingText.astro";
 
 const faqs = [
-    {
-        question: "What digital marketing services do you offer?",
-        answer: "We offer SEO, SEM, social media management, email marketing, content marketing, and online advertising on Google Ads, Meta Ads, and LinkedIn Ads to maximize your visibility."
-    },
-    {
-        question: "How long does it take to see results?",
-        answer: "Organic SEO results are visible in 3-6 months, while paid campaigns can generate leads from day one. We create customized strategies based on your specific goals."
-    },
-    {
-        question: "Do you develop custom websites or use templates?",
-        answer: "All our websites are 100% custom-built, conversion-optimized, and tailored to your brand. We never use generic templates."
-    },
-    {
-        question: "Are the web designs responsive?",
-        answer: "Yes, all our websites are fully responsive and optimized for mobile, tablet, and desktop. We prioritize user experience across all devices."
-    },
-    {
-        question: "What does a complete web project include?",
-        answer: "It includes UI/UX design, frontend/backend development, technical SEO optimization, form integration, hosting, domain, and training so you can manage your content."
-    },
-    {
-        question: "Do you offer website maintenance?",
-        answer: "Yes, we offer monthly maintenance that includes security updates, backups, performance optimization, and 24/7 technical support."
-    },
-    {
-        question: "Can I make changes to my website later?",
-        answer: "Absolutely! We deliver an intuitive CMS (WordPress, Webflow, or headless) plus training so you can make all the changes you need independently."
-    },
-    {
-        question: "What makes your agency different?",
-        answer: "We combine marketing strategy with high-performance web development. We don't just create beautiful websites, we generate measurable results that grow your business."
-    }
+  {
+    question: "What digital marketing services do you offer?",
+    answer:
+      "We offer SEO, SEM, social media management, email marketing, content marketing, and online advertising on Google Ads, Meta Ads, and LinkedIn Ads to maximize your visibility.",
+  },
+  {
+    question: "How long does it take to see results?",
+    answer:
+      "Organic SEO results are visible in 3-6 months, while paid campaigns can generate leads from day one. We create customized strategies based on your specific goals.",
+  },
+  {
+    question: "Do you develop custom websites or use templates?",
+    answer:
+      "All our websites are 100% custom-built, conversion-optimized, and tailored to your brand. We never use generic templates.",
+  },
+  {
+    question: "Are the web designs responsive?",
+    answer:
+      "Yes, all our websites are fully responsive and optimized for mobile, tablet, and desktop. We prioritize user experience across all devices.",
+  },
+  {
+    question: "What does a complete web project include?",
+    answer:
+      "It includes UI/UX design, frontend/backend development, technical SEO optimization, form integration, hosting, domain, and training so you can manage your content.",
+  },
+  {
+    question: "Do you offer website maintenance?",
+    answer:
+      "Yes, we offer monthly maintenance that includes security updates, backups, performance optimization, and 24/7 technical support.",
+  },
+  {
+    question: "Can I make changes to my website later?",
+    answer:
+      "Absolutely! We deliver an intuitive CMS (WordPress, Webflow, or headless) plus training so you can make all the changes you need independently.",
+  },
+  {
+    question: "What makes your agency different?",
+    answer:
+      "We combine marketing strategy with high-performance web development. We don't just create beautiful websites, we generate measurable results that grow your business.",
+  },
 ];
 ---
 
+<section class="w-full flex flex-col items-center justify-center py-20">
+  <div class="w-full max-w-7xl container mx-auto flex flex-col justify-center">
+    <div
+      class="mb-10 flex flex-col justify-center gap-4 align-middle items-center"
+    >
+      <HeadingText
+        level={2}
+        text="Most asked "
+        textGradient="FAQ's"
+        className="text-center text-3xl font-bold md:text-5xl tracking-tight"
+      />
 
-<section class="w-full flex flex-col items-center justify-center py-20 px-4">
-    <div class="w-full max-w-7xl container mx-auto flex flex-col justify-center">
-        <div class="mb-10 flex flex-col justify-center gap-4 align-middle items-center">
-            <HeadingText level={2} text="Most asked " textGradient="FAQ's" className="text-center text-3xl font-bold md:text-5xl tracking-tight" />
-           
-            <p class="max-w-[416px] text-sm text-center  mx-auto md:mx-0">
-                We're here to help you and solve doubts. Find answers to the most common questions below.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1  gap-x-8 gap-y-4">
-            {faqs.map((faq) => (
-                <details class="faq-item">
-                    <summary>
-                        <span>{faq.question}</span>
-                        <div class="faq-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14"/>
-                                <path d="M12 5v14"/>
-                            </svg>
-                        </div>
-                    </summary>
-                    <div class="faq-answer">
-                        <p>{faq.answer}</p>
-                    </div>
-                </details>
-            ))}
-        </div>
+      <p class="section-muted max-w-2xl mx-auto">
+        We're here to help you and solve doubts. Find answers to the most common
+        questions below.
+      </p>
     </div>
+
+    <div class="grid grid-cols-1 gap-x-8 gap-y-4">
+      {
+        faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>
+              <span>{faq.question}</span>
+              <div class="faq-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="M12 5v14" />
+                </svg>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <p>{faq.answer}</p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
 </section>
 
 <style>
-    @reference "../../styles/global.css";
+  @reference "../../styles/global.css";
 
-    /* Estilos para details/summary */
-    details {
-        @apply  p-3.5 rounded-lg border hover:border-[var(--accent-lime)]/30  transition-all duration-300 cursor-pointer;
-        border-color: var(--card-border);
+  /* Estilos para details/summary */
+  details {
+    @apply p-3.5 rounded-lg border hover:border-[var(--accent-lime)]/30  transition-all duration-300 cursor-pointer shadow shadow-md;
+    border-color: var(--card-border);
     background-color: var(--card-bg);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
-    }
+  }
 
-    summary {
-        @apply flex items-center justify-between text-sm font-medium list-none;
-    }
+  summary {
+    @apply flex items-center justify-between text-sm font-medium list-none;
+  }
 
-    summary::-webkit-details-marker {
-        display: none;
-    }
+  summary::-webkit-details-marker {
+    display: none;
+  }
 
-    summary::marker {
-        display: none;
-    }
+  summary::marker {
+    display: none;
+  }
 
-    .faq-answer {
-        @apply text-sm  leading-relaxed mt-4;
-        max-height: 0;
-        opacity: 0;
-        transition: all 0.3s ease;
-        overflow: hidden;
-    }
+  .faq-answer {
+    @apply text-sm  leading-relaxed mt-4;
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
 
-    details[open] .faq-answer {
-        max-height: 500px; /* Aumentado para más contenido */
-        opacity: 1;
-    }
+  details[open] .faq-answer {
+    max-height: 500px; /* Aumentado para más contenido */
+    opacity: 1;
+  }
 
-    .faq-icon {
-        @apply rounded transition-all duration-300 size-5 ;
-        transform: rotate(0deg);
-    }
+  .faq-icon {
+    @apply rounded transition-all duration-300 size-5;
+    transform: rotate(0deg);
+  }
 
-    details[open] .faq-icon {
-        @apply bg-slate-200 text-slate-500;
-        transform: rotate(180deg);
-    }
+  details[open] .faq-icon {
+    @apply bg-slate-200 text-slate-500;
+    transform: rotate(180deg);
+  }
 
-    /* CORREGIDO: Rotación del icono en lugar de ocultar path */
-    .faq-icon svg {
-        transition: transform 0.3s ease;
-    }
+  /* CORREGIDO: Rotación del icono en lugar de ocultar path */
+  .faq-icon svg {
+    transition: transform 0.3s ease;
+  }
 </style>
