@@ -6,9 +6,10 @@ import Sponsors from "@components/Sections/Sponsors.astro";
 import FaqSection from "@components/Sections/FaqSection.astro";
 import TestimonialCard from "@components/UI/TestimonialCard.astro";
 import TestimonialSection from "@components/Sections/TestimonialSection.astro";
+import ServicesSection from "@components/Sections/ServicesSection.astro";
 ---
 
-<BaseLayout 
+<BaseLayout
   title="MarketingPlus | Premium Digital Agency for Standing Out Online"
   description="We help brands stand out through creative web design, strategic branding, and growth-focused marketing services. Build your digital presence with MarketingPlus."
 >
@@ -62,35 +63,7 @@ import TestimonialSection from "@components/Sections/TestimonialSection.astro";
       </div>
     </section>
 
-    <section id="services" class="mt-24 scroll-mt-20">
-      <h2 class="section-title">Services</h2>
-
-      <div class="mt-6 grid gap-4 md:grid-cols-3">
-        <article class="glass-card">
-          <h3 class="text-lg font-semibold">Web Design</h3>
-
-          <p class="mt-2 section-muted">
-            Conversion-focused websites with premium visuals and smooth UX.
-          </p>
-        </article>
-
-        <article class="glass-card">
-          <h3 class="text-lg font-semibold">Brand Strategy</h3>
-
-          <p class="mt-2 section-muted">
-            Clear positioning and identity systems to grow recognition.
-          </p>
-        </article>
-
-        <article class="glass-card">
-          <h3 class="text-lg font-semibold">Growth Marketing</h3>
-
-          <p class="mt-2 section-muted">
-            Paid media and content strategies that generate measurable ROI.
-          </p>
-        </article>
-      </div>
-    </section>
+    <ServicesSection />
     <AboutSection id="about" />
     <Sponsors />
     <HowItWorks id="process" />
