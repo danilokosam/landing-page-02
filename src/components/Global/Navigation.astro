@@ -146,15 +146,18 @@ const navItems = [
 </style>
 
 <script>
-  // Function to update active nav link based on current hash
-  const updateActiveLink = () => {
-    const currentHash = window.location.hash || "#services"; // default to #services
+  let activeSection = "#services"; // Track the currently active section
+
+  // Function to update active nav link styling
+  const setActiveLink = (activeId: string) => {
+    activeSection = activeId;
+    const navLinks = document.querySelectorAll(".nav-link") as NodeListOf<HTMLAnchorElement>;
+    const mobileNavLinks = document.querySelectorAll(".mobile-nav-link") as NodeListOf<HTMLAnchorElement>;
     
     // Update desktop nav links
-    const navLinks = document.querySelectorAll(".nav-link") as NodeListOf<HTMLAnchorElement>;
     navLinks.forEach((link) => {
       const href = link.getAttribute("data-href");
-      const isActive = href === currentHash;
+      const isActive = href === activeId;
       
       if (isActive) {
         link.setAttribute("aria-current", "page");
@@ -170,10 +173,9 @@ const navItems = [
     });
 
     // Update mobile nav links
-    const mobileNavLinks = document.querySelectorAll(".mobile-nav-link") as NodeListOf<HTMLAnchorElement>;
     mobileNavLinks.forEach((link) => {
       const href = link.getAttribute("data-href");
-      const isActive = href === currentHash;
+      const isActive = href === activeId;
       
       if (isActive) {
         link.classList.add("active");
@@ -185,8 +187,45 @@ const navItems = [
     });
   };
 
+  // Intersection Observer to detect which section is most visible
+  const observeSections = () => {
+    const sections = document.querySelectorAll("[id='services'], [id='about'], [id='process'], [id='faq']");
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px 0px 0px 0px",
+      threshold: [0, 0.25, 0.5, 0.75, 1],
+    };
+    
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      // Find the section with the highest intersection ratio
+      let mostVisibleEntry = entries.reduce((max, entry) => {
+        return entry.intersectionRatio > max.intersectionRatio ? entry : max;
+      });
+
+      if (mostVisibleEntry && mostVisibleEntry.intersectionRatio > 0) {
+        const sectionId = mostVisibleEntry.target.getAttribute("id");
+        setActiveLink(`#${sectionId}`);
+      }
+    };
+    
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    sections.forEach((section) => observer.observe(section));
+  };
+
+  // Add click handlers to nav links to update active state immediately
+  const setupLinkClickHandlers = () => {
+    const navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link") as NodeListOf<HTMLAnchorElement>;
+    navLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const href = link.getAttribute("data-href");
+        setActiveLink(href);
+      });
+    });
+  };
+
   // Add hover effects for desktop nav links
-  document.addEventListener("DOMContentLoaded", () => {
+  const setupHoverEffects = () => {
     const navLinks = document.querySelectorAll(".nav-link") as NodeListOf<HTMLAnchorElement>;
     navLinks.forEach((link) => {
       link.addEventListener("mouseover", function() {
@@ -203,13 +242,16 @@ const navItems = [
         this.style.opacity = isActive ? "1" : "0.85";
       });
     });
+  };
 
-    // Initial update
-    updateActiveLink();
+  // Initialize on DOM ready
+  document.addEventListener("DOMContentLoaded", () => {
+    // Set initial active link
+    setActiveLink("#services");
+    setupLinkClickHandlers();
+    observeSections();
+    setupHoverEffects();
   });
-
-  // Update active link when hash changes
-  window.addEventListener("hashchange", updateActiveLink);
 
   // Mobile menu functionality
   document.addEventListener("DOMContentLoaded", () => {
