@@ -194,6 +194,8 @@ const navItems = [
       "[id='services'], [id='about'], [id='process'], [id='faq']",
     );
 
+    const visibleSections = new Set<string>();
+
     const observerOptions = {
       root: null,
       rootMargin: "-50% 0px -50% 0px", // Trigger when section is in the middle of viewport
@@ -202,9 +204,18 @@ const navItems = [
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
+        const sectionId = entry.target.getAttribute("id");
+        if (!sectionId) return;
+
         if (entry.isIntersecting) {
-          const sectionId = entry.target.getAttribute("id");
+          visibleSections.add(sectionId);
           setActiveLink(`#${sectionId}`);
+        } else {
+          visibleSections.delete(sectionId);
+          // If no section is visible, clear all active states
+          if (visibleSections.size === 0) {
+            setActiveLink("");
+          }
         }
       });
     };
