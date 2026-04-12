@@ -8,7 +8,10 @@ import TestimonialCard from "@components/UI/TestimonialCard.astro";
 import TestimonialSection from "@components/Sections/TestimonialSection.astro";
 ---
 
-<BaseLayout>
+<BaseLayout 
+  title="MarketingPlus | Premium Digital Agency for Standing Out Online"
+  description="We help brands stand out through creative web design, strategic branding, and growth-focused marketing services. Build your digital presence with MarketingPlus."
+>
   <main class="agency-container py-12 md:py-20">
     <section class="grid items-center gap-10 md:grid-cols-2">
       <div class="space-y-6">
@@ -59,7 +62,7 @@ import TestimonialSection from "@components/Sections/TestimonialSection.astro";
       </div>
     </section>
 
-    <section class="mt-24">
+    <section id="services" class="mt-24">
       <h2 class="section-title">Services</h2>
 
       <div class="mt-6 grid gap-4 md:grid-cols-3">
@@ -88,10 +91,10 @@ import TestimonialSection from "@components/Sections/TestimonialSection.astro";
         </article>
       </div>
     </section>
-    <AboutSection />
+    <AboutSection id="about" />
     <Sponsors />
-    <HowItWorks />
-    <FaqSection />
+    <HowItWorks id="process" />
+    <FaqSection id="faq" />
     <TestimonialSection />
   </main>
 </BaseLayout>

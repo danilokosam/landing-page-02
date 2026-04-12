@@ -43,9 +43,11 @@ const faqs = [
       "We combine marketing strategy with high-performance web development. We don't just create beautiful websites, we generate measurable results that grow your business.",
   },
 ];
+
+const { id } = Astro.props;
 ---
 
-<section class="w-full flex flex-col items-center justify-center py-20">
+<section id={id} class="w-full flex flex-col items-center justify-center py-20">
   <div class="w-full max-w-7xl container mx-auto flex flex-col justify-center">
     <div
       class="mb-10 flex flex-col justify-center gap-4 align-middle items-center"
