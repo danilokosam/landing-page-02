@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-fade-in {
+  animation: pageFadeIn 3.5s ease-out forwards;
+}
+
 @layer base {
   /* =========================
      LIGHT (DEFAULT)
@@ -164,5 +177,18 @@
 
   .section-muted {
     color: var(--muted);
+  }
+
+  .service-card {
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(124, 140, 255, 0.15);
+    border-color: rgba(124, 140, 255, 0.3);
   }
 }
