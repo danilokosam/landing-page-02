@@ -127,17 +127,17 @@ const { id } = Astro.props;
     @apply text-sm  leading-relaxed mt-4;
     max-height: 0;
     opacity: 0;
-    transition: all 0.3s ease;
+    transition: all 500ms ease;
     overflow: hidden;
   }
 
   details[open] .faq-answer {
-    max-height: 500px; /* Aumentado para más contenido */
+    max-height: 500px;
     opacity: 1;
   }
 
   .faq-icon {
-    @apply rounded transition-all duration-300 size-5;
+    @apply rounded transition-all duration-500 size-5;
     transform: rotate(0deg);
   }
 
@@ -146,8 +146,7 @@ const { id } = Astro.props;
     transform: rotate(180deg);
   }
 
-  /* CORREGIDO: Rotación del icono en lugar de ocultar path */
   .faq-icon svg {
-    transition: transform 0.3s ease;
+    transition: transform 500ms ease;
   }
 </style>
