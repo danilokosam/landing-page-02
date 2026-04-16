@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @keyframes pageFadeIn {
   from {
     opacity: 0;
@@ -19,57 +21,63 @@
   ========================= */
   :root {
     --bg: #ffffff;
-    --bg-soft: #f8fafc;
+    --bg-soft: #f5f3ff;
     --surface: #ffffff;
-    --text: #000000;
-    --muted: #475569;
-    --primary: #49F054;
-    --secondary: #F09748;
-    --ring: #7148F0;
+    --text: #1e1b4b;
+    --muted: #6366f1;
+    --primary: #6366f1;
+    --secondary: #f43f5e;
+    --ring: #8b5cf6;
 
-    --bg-glow-1: #e7edff;
-    --bg-glow-2: #e3faf6;
+    --bg-glow-1: #eef2ff;
+    --bg-glow-2: #fff1f2;
 
-    --card-border: #33415555;
-    --card-bg: #ffffffe6;
+    --card-border: #e0e7ff;
+    --card-bg: rgba(255, 255, 255, 0.7);
 
-    --btn-secondary-text: #334155;
-    --btn-secondary-border: #F09748;
-    --btn-secondary-hover: #F09748;
-    --accent-lime: #B0F01F;
+    --btn-secondary-text: #4338ca;
+    --btn-secondary-border: #6366f1;
+    --btn-secondary-hover: #6366f1;
+    --accent-lime: #fbbf24;
 
-    --surface-inset: #0f172a;
-    --primary-soft: #99f39f96;
-    --primary-border: rgba(109, 124, 255, 0.35);
+    --surface-inset: #1e1b4b;
+    --primary-soft: rgba(99, 102, 241, 0.1);
+    --primary-border: rgba(99, 102, 241, 0.3);
   }
 
   /* =========================
      DARK (MANUAL - button)
   ========================= */
   :root.dark {
-    --bg: #0f0f0f;
-    --bg-soft: #0a0f1f;
-    --surface: #0f1629;
-
-    --text: #e6ecff;
+    --bg: #030712;
+    --bg-soft: #0f172a;
+    --surface: #1e1b4b;
+    --text: #f8fafc;
     --muted: #94a3b8;
 
-    --primary: #49F054;
-    --secondary: #F09748;
+    --primary: #818cf8;
+    --secondary: #fb7185;
+    --ring: #a78bfa;
 
-    --ring: #7c8cff66;
+    --bg-glow-1: #1e1b4b;
+    --bg-glow-2: #312e81;
 
-    --card-border: #33415555;
-    --card-bg: #0b1120cc;
+    --card-border: #312e81;
+    --card-bg: rgba(
+      15,
+      23,
+      42,
+      0.6
+    );
 
-    --btn-secondary-text: #cbd5f5;
-    --btn-secondary-border: #F09748;
-    --btn-secondary-hover: #F09748;
-    --accent-lime: #B0F01F;
+    --btn-secondary-text: #e0e7ff;
+    --btn-secondary-border: #4338ca;
+    --btn-secondary-hover: #4338ca;
+    --accent-lime: #fcd34d;
 
-    --surface-inset: #0f172a;
-    --primary-soft: #99f39f96;
-    --primary-border: rgba(124, 140, 255, 0.35);
+    --surface-inset: #020617;
+    --primary-soft: rgba(99, 102, 241, 0.2);
+    --primary-border: rgba(129, 140, 248, 0.4);
   }
 
   /* =========================
@@ -85,8 +93,8 @@
       --text: #e6ecff;
       --muted: #94a3b8;
 
-      --primary: #49F054;
-      --secondary: #F09748;
+      --primary: #49f054;
+      --secondary: #f09748;
 
       --ring: #7c8cff66;
 
@@ -94,12 +102,12 @@
       --card-bg: #4f586421;
 
       --btn-secondary-text: #cbd5f5;
-      --btn-secondary-border: #F09748;
-      --btn-secondary-hover: #F09748;
-      --accent-lime: #B0F01F;
+      --btn-secondary-border: #f09748;
+      --btn-secondary-hover: #f09748;
+      --accent-lime: #b0f01f;
 
       --surface-inset: #0f172a;
-      --primary-soft:  #99f39f96;
+      --primary-soft: #99f39f96;
       --primary-border: rgba(124, 140, 255, 0.35);
     }
   }
@@ -138,7 +146,7 @@
   }
 
   .btn-primary {
-    @apply px-6 py-3.5 font-semibold transition-all duration-200 ;
+    @apply px-6 py-3.5 font-semibold transition-all duration-200;
     background: var(--primary);
     color: #000000;
     box-shadow: 0 10px 30px rgba(32, 240, 56, 0.35);

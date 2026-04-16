@@ -3,12 +3,10 @@ import Navigation from "@components/Global/Navigation.astro";
 ---
 
 <header
-  class="sticky top-0 z-50 w-full transition-all duration-300"
-  style="
-    background-color: color-mix(in srgb, var(--card-bg) 85%, transparent);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--soft-primary);
-  "
+  class="sticky top-0 z-50 w-full transition-all duration-300 
+         bg-[color-mix(in_srgb,var(--card-bg)_85%,transparent)] 
+         backdrop-blur-xl 
+         border-b border-(--primary-soft)"
 >
   <div
     class="mx-auto w-full max-w-7xl px-4 lg:px-0 flex items-center justify-between h-20"
@@ -19,15 +17,15 @@ import Navigation from "@components/Global/Navigation.astro";
       class="flex items-center gap-2 text-xl md:text-2xl font-semibold tracking-tight transition-opacity hover:opacity-80"
       style="color: var(--text);"
     >
-      <span class="sr-only">Name</span>
+      <span class="sr-only">Landyk</span>
       <span
         class="inline-flex items-center justify-center w-8 h-8 rounded-lg"
         style="background: linear-gradient(135deg, var(--primary), var(--secondary));"
       >
-        <span class="text-white text-sm font-bold">N</span>
+        <span class="text-white text-sm font-bold">L</span>
       </span>
 
-      <span>Name</span>
+      <span>Landyk</span>
     </a>
     <Navigation />
   </div>
