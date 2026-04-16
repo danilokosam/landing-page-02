@@ -1,0 +1,207 @@
+---
+import HeadingText from "@components/UI/HeadingText.astro";
+
+interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<section id={id} class="mt-24 scroll-mt-24">
+  <div
+    class="form-showcase relative overflow-hidden rounded-4xl border border-(--card-border) bg-(--card-bg) px-6 py-8 shadow-[0_30px_80px_-40px_var(--primary)] backdrop-blur-xl sm:px-8 lg:px-10 lg:py-10"
+  >
+    <div class="form-orb form-orb-primary"></div>
+    <div class="form-orb form-orb-secondary"></div>
+
+    <div
+      class="relative grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center"
+    >
+      <div class="max-w-xl">
+        <div
+          class="inline-flex items-center rounded-full border border-(--primary-border) bg-(--primary-soft) px-4 py-1 text-sm font-medium text-(--primary)"
+        >
+          Project inquiry
+        </div>
+
+        <HeadingText
+          level={2}
+          text="Tell us about your"
+          textGradient="next idea"
+          className="mt-5 max-w-lg text-3xl font-bold tracking-tight md:text-5xl"
+        />
+
+        <p class="mt-4 max-w-xl text-base leading-7 text-(--muted) md:text-lg">
+          Share the basics and we will have a clear starting point for the
+          conversation. This demo form is designed to preview the experience and
+          includes simple client-side input validation.
+        </p>
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          <div
+            class="info-card rounded-2xl border-2 border-(--card-border) p-4"
+          >
+            <p class="text-sm font-semibold text-(--text)">Fast contact</p>
+            <p class="mt-2 text-sm leading-6 text-(--muted)">
+              Leave your name and phone number so we can follow up with context.
+            </p>
+          </div>
+
+          <div class="info-card rounded-2xl border border-(--card-border) p-4">
+            <p class="text-sm font-semibold text-(--text)">Clear brief</p>
+            <p class="mt-2 text-sm leading-6 text-(--muted)">
+              A short project idea helps frame scope, goals and the right next
+              step.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <form
+        class="rounded-[1.75rem] border border-(--card-border) bg-(--surface)/90 p-5 shadow-[0_24px_60px_-35px_rgba(15,23,42,0.55)] sm:p-7"
+        action="#"
+        method="post"
+      >
+        <div class="grid gap-5">
+          <div>
+            <label
+              class="mb-2 block text-sm font-medium text-(--text)"
+              for="name"
+            >
+              Name
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Your full name"
+              required
+              minlength="3"
+              maxlength="80"
+              class="form-field w-full rounded-xl border border-(--card-border) bg-(--bg) px-4 py-3 text-base text-(--text) placeholder:text-(--muted)"
+            />
+          </div>
+
+          <div>
+            <label
+              class="mb-2 block text-sm font-medium text-(--text)"
+              for="phone"
+            >
+              Phone
+            </label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              placeholder="+51 999 999 999"
+              required
+              minlength="7"
+              maxlength="20"
+              pattern="[0-9+()\-\s]{7,20}"
+              inputmode="tel"
+              class="form-field w-full rounded-xl border border-(--card-border) bg-(--bg) px-4 py-3 text-base text-(--text) placeholder:text-(--muted)"
+            />
+          </div>
+
+          <div>
+            <label
+              class="mb-2 block text-sm font-medium text-(--text)"
+              for="project-idea"
+            >
+              Project idea
+            </label>
+            <textarea
+              id="project-idea"
+              name="projectIdea"
+              placeholder="Describe your project idea"
+              required
+              minlength="20"
+              maxlength="500"
+              rows="6"
+              class="form-field min-h-36 w-full rounded-xl border border-(--card-border) bg-(--bg) px-4 py-3 text-base text-(--text) placeholder:text-(--muted)"
+            ></textarea>
+          </div>
+
+          <div
+            class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+          >
+            <button
+              type="submit"
+              class="inline-flex items-center justify-center rounded-xl bg-(--primary) px-6 py-3.5 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-1"
+            >
+              Start Your Project
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .form-showcase {
+    background:
+      radial-gradient(circle at top left, var(--primary-soft), transparent 32%),
+      radial-gradient(
+        circle at bottom right,
+        color-mix(in srgb, var(--secondary) 18%, transparent),
+        transparent 30%
+      ),
+      linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--surface) 84%, transparent),
+        color-mix(in srgb, var(--bg-soft) 76%, transparent)
+      );
+  }
+
+  .form-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(18px);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .form-orb-primary {
+    top: -2rem;
+    right: 12%;
+    height: 9rem;
+    width: 9rem;
+    background: color-mix(in srgb, var(--primary) 28%, transparent);
+  }
+
+  .form-orb-secondary {
+    bottom: -3rem;
+    left: 8%;
+    height: 11rem;
+    width: 11rem;
+    background: color-mix(in srgb, var(--secondary) 24%, transparent);
+  }
+
+  .info-card {
+    background: color-mix(in srgb, var(--surface) 82%, transparent);
+  }
+
+  .form-field {
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .form-field:hover {
+    border-color: var(--primary-border);
+  }
+
+  .form-field:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--primary-soft);
+    transform: translateY(-1px);
+    outline: none;
+  }
+
+  textarea.form-field {
+    resize: vertical;
+  }
+</style>

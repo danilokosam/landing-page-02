@@ -47,13 +47,13 @@ The local dev server runs at `http://localhost:4321` by default.
 
 ## Scripts
 
-| Command | Description |
-| :-- | :-- |
-| `pnpm dev` | Start the Astro development server |
-| `pnpm build` | Build the production output in `dist/` |
-| `pnpm preview` | Serve the production build locally |
-| `pnpm format` | Format the project using Prettier |
-| `pnpm astro` | Run Astro CLI commands |
+| Command        | Description                            |
+| :------------- | :------------------------------------- |
+| `pnpm dev`     | Start the Astro development server     |
+| `pnpm build`   | Build the production output in `dist/` |
+| `pnpm preview` | Serve the production build locally     |
+| `pnpm format`  | Format the project using Prettier      |
+| `pnpm astro`   | Run Astro CLI commands                 |
 
 ## Project Architecture
 
@@ -170,11 +170,11 @@ flowchart TD
 The theme behavior is implemented in two layers:
 
 1. Initial theme bootstrapping in `BaseLayout.astro`:
-	- Reads saved preference from `localStorage`.
-	- Falls back to system preference if no manual choice exists.
+   - Reads saved preference from `localStorage`.
+   - Falls back to system preference if no manual choice exists.
 2. Runtime switching in `ThemeIcon.astro`:
-	- Toggles `dark` and `light` classes on `<html>`.
-	- Persists the user choice.
+   - Toggles `dark` and `light` classes on `<html>`.
+   - Persists the user choice.
 
 Color tokens and theme surfaces are centralized in `src/styles/global.css` for easy design updates.
 
