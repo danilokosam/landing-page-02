@@ -12,7 +12,7 @@ const { testimonial } = Astro.props;
 ---
 
 <div
-  class="glass-card hover:border-lime-300/30 rounded-xl p-4 shrink-0 w-[350px] flex-shrink-0"
+  class="glass-card hover:border-(--primary) rounded-xl p-4 w-96 shrink-0"
 >
   <!-- 5 estrellas -->
   <div class="flex mb-4">
@@ -21,7 +21,7 @@ const { testimonial } = Astro.props;
         .fill(0)
         .map((_, i) => (
           <svg
-            key={i}
+          
             xmlns="http://www.w3.org/2000/svg"
             width="16"
             height="16"
