@@ -21,14 +21,14 @@ import logoDark from "@assets/arka-1-dark.svg";
       <span class="sr-only">arca</span>
       <span class="inline-flex items-center justify-center w-16 h-16">
         <img
-          src={logoLight.src}
-          alt="arca Logo light"
-          class="logo-light w-16 h-16"
-        />
-        <img
           src={logoDark.src}
           alt="arca Logo dark"
-          class="logo-dark w-16 h-16"
+          class="hidden dark:inline w-16 h-16"
+        />
+        <img
+          src={logoLight.src}
+          alt="arca Logo light"
+          class="inline dark:hidden w-16 h-16"
         />
       </span>
     </a>
