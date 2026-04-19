@@ -182,15 +182,63 @@
   }
 
   .service-card {
+    position: relative;
+    overflow: hidden;
     transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease,
-      border-color 0.3s ease;
+      box-shadow 0.4s ease,
+      border-color 0.4s ease;
+  }
+
+  .service-card::before {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    z-index: 0;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0%,
+      var(--primary) 25%,
+      var(--secondary) 50%,
+      var(--primary) 75%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    animation: none;
+  }
+
+  .service-card::after {
+    content: "";
+    position: absolute;
+    inset: 1.5px;
+    z-index: 0;
+    border-radius: inherit;
+    background: var(--bg);
+  }
+
+  .service-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
+    animation: borderRotate 3s linear infinite;
   }
 
   .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 5px 10px var(--primary-soft);
-    border-color: var(--primary);
+    box-shadow:
+      0 0 20px var(--primary-soft),
+      0 0 40px rgba(99, 102, 241, 0.05);
+    border-color: transparent;
+  }
+
+  @keyframes borderRotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }
