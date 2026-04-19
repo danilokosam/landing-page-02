@@ -117,8 +117,17 @@
     min-height: 100%;
     background: var(--bg);
     color: var(--text);
-    font-family: Inter, "Segoe UI", Roboto, sans-serif;
+    font-family: "DM Sans", Inter, "Segoe UI", Roboto, sans-serif;
     scroll-behavior: smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Plus Jakarta Sans", "DM Sans", sans-serif;
   }
 
   *:focus-visible {
