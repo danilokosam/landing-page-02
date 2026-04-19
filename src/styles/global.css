@@ -197,9 +197,11 @@
     background: conic-gradient(
       from 0deg,
       transparent 0%,
-      var(--primary) 25%,
+      transparent 30%,
+      var(--primary) 40%,
       var(--secondary) 50%,
-      var(--primary) 75%,
+      var(--primary) 60%,
+      transparent 70%,
       transparent 100%
     );
     opacity: 0;
@@ -223,7 +225,7 @@
 
   .service-card:hover::before {
     opacity: 1;
-    animation: borderRotate 3s linear infinite;
+    animation: borderRotate 4s linear infinite;
   }
 
   .service-card:hover {
