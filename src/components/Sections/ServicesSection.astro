@@ -1,56 +1,68 @@
 ---
+import HeadingText from "@components/UI/HeadingText.astro";
 const { id } = Astro.props;
 ---
 
 <section id={id} class="mt-24 scroll-mt-24">
-  <h2 class="section-title">Services</h2>
+  <HeadingText
+    level={2}
+    text="Our "
+    textGradient="Services"
+    className="text-left text-3xl font-bold md:text-5xl tracking-tight"
+  />
 
   <div class="mt-6 grid gap-4 md:grid-cols-3">
     <article class="service-card glass-card">
-      <h3 class="text-lg font-semibold">Web Design</h3>
+      <h3 class="text-lg font-semibold">Landing Pages</h3>
 
       <p class="mt-2 section-muted">
-        Conversion-focused websites with premium visuals and smooth UX.
+        High-converting landing pages designed to capture leads, validate
+        offers, and turn traffic into real business opportunities.
       </p>
     </article>
 
     <article class="service-card glass-card">
-      <h3 class="text-lg font-semibold">Brand Strategy</h3>
+      <h3 class="text-lg font-semibold">E-commerce Development</h3>
 
       <p class="mt-2 section-muted">
-        Clear positioning and identity systems to grow recognition.
+        Scalable online stores with optimized product flows, secure checkout,
+        and performance-focused UX to increase sales.
       </p>
     </article>
 
     <article class="service-card glass-card">
-      <h3 class="text-lg font-semibold">Growth Marketing</h3>
+      <h3 class="text-lg font-semibold">CRM Integration</h3>
 
       <p class="mt-2 section-muted">
-        Paid media and content strategies that generate measurable ROI.
+        Smart CRM setups that centralize leads, automate follow-ups, and give
+        your sales team full visibility of every opportunity.
       </p>
     </article>
 
     <article class="service-card glass-card">
-      <h3 class="text-lg font-semibold">Growth Marketing</h3>
+      <h3 class="text-lg font-semibold">CMS Implementation</h3>
 
       <p class="mt-2 section-muted">
-        Paid media and content strategies that generate measurable ROI.
+        Flexible content management systems so your team can update pages,
+        publish content, and scale your website without developer dependency.
       </p>
     </article>
 
     <article class="service-card glass-card">
-      <h3 class="text-lg font-semibold">Growth Marketing</h3>
+      <h3 class="text-lg font-semibold">SEO Optimization</h3>
 
       <p class="mt-2 section-muted">
-        Paid media and content strategies that generate measurable ROI.
+        Technical and on-page SEO improvements that boost search visibility,
+        attract qualified traffic, and support long-term growth.
       </p>
     </article>
 
     <article class="service-card glass-card">
-      <h3 class="text-lg font-semibold">Growth Marketing</h3>
+      <h3 class="text-lg font-semibold">Maintenance & Support</h3>
 
       <p class="mt-2 section-muted">
-        Paid media and content strategies that generate measurable ROI.
+        Ongoing monitoring, updates, and technical support to keep your digital
+        platform secure, fast, and always available.
       </p>
     </article>
   </div>
