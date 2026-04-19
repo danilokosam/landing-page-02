@@ -1,5 +1,39 @@
 @import "tailwindcss";
 
+/* Logo dark/light mode support */
+.logo-light {
+  display: inline;
+}
+.logo-dark {
+  display: none;
+}
+
+/* Support for manual dark mode (.dark in html/body) */
+:root.dark .logo-light,
+html.dark .logo-light,
+body.dark .logo-light {
+  display: none;
+}
+:root.dark .logo-dark,
+html.dark .logo-dark,
+body.dark .logo-dark {
+  display: inline;
+}
+
+/* Support for automatic dark mode (prefers-color-scheme: dark) if .light is not present */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) .logo-light,
+  html:not(.light) .logo-light,
+  body:not(.light) .logo-light {
+    display: none;
+  }
+  :root:not(.light) .logo-dark,
+  html:not(.light) .logo-dark,
+  body:not(.light) .logo-dark {
+    display: inline;
+  }
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @keyframes pageFadeIn {

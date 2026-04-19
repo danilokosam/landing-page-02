@@ -1,5 +1,7 @@
 ---
 import Navigation from "@components/Global/Navigation.astro";
+import logoLight from "@assets/arka-1-light.svg";
+import logoDark from "@assets/arka-1-dark.svg";
 ---
 
 <header
@@ -16,15 +18,19 @@ import Navigation from "@components/Global/Navigation.astro";
       class="flex items-center gap-2 text-xl md:text-2xl font-semibold tracking-tight transition-opacity hover:opacity-80"
       style="color: var(--text);"
     >
-      <span class="sr-only">Landyk</span>
-      <span
-        class="inline-flex items-center justify-center w-8 h-8 rounded-lg"
-        style="background: linear-gradient(135deg, var(--primary), var(--secondary));"
-      >
-        <span class="text-white text-sm font-bold">L</span>
+      <span class="sr-only">arca</span>
+      <span class="inline-flex items-center justify-center w-16 h-16">
+        <img
+          src={logoLight.src}
+          alt="arca Logo light"
+          class="logo-light w-16 h-16"
+        />
+        <img
+          src={logoDark.src}
+          alt="arca Logo dark"
+          class="logo-dark w-16 h-16"
+        />
       </span>
-
-      <span>Landyk</span>
     </a>
     <Navigation />
   </div>

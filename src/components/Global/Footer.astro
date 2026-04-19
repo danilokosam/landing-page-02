@@ -1,5 +1,7 @@
 ---
-import HeadingText from "@components/UI/HeadingText.astro";
+import { Image } from "astro:assets";
+import logoLight from "@assets/arka-1-light.svg";
+import logoDark from "@assets/arka-1-dark.svg";
 
 const footerOptions = [
   {
@@ -78,7 +80,18 @@ const footerOptions = [
     class="container w-full mx-auto max-w-7xl flex flex-col md:flex-row text-start justify-center md:justify-between py-20 px-12 lg:px-0"
   >
     <div class="w-full md:w-96 py-10 md:py-0">
-      <HeadingText text="Nova" level={2} textGradient="nova" />
+      <span class="inline-flex items-center justify-center w-16 h-16 mb-2">
+        <img
+          src={logoLight.src}
+          alt="arca Logo light"
+          class="logo-light w-16 h-16"
+        />
+        <img
+          src={logoDark.src}
+          alt="arca Logo dark"
+          class="logo-dark w-16 h-16"
+        />
+      </span>
 
       <p class="mt-2 max-w-72 text-sm text-slate-500">
         We build bold digital products and high-performance brand experiences.
