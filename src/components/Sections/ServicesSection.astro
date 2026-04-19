@@ -1,6 +1,40 @@
 ---
 import HeadingText from "@components/UI/HeadingText.astro";
+import FeatureCard from "@components/UI/FeatureCard.astro";
 const { id } = Astro.props;
+
+const services = [
+  {
+    title: "Landing Pages",
+    description:
+      "High-converting landing pages designed to capture leads, validate offers, and turn traffic into real business opportunities.",
+  },
+  {
+    title: "E-commerce Development",
+    description:
+      "Scalable online stores with optimized product flows, secure checkout, and performance-focused UX to increase sales.",
+  },
+  {
+    title: "CRM Integration",
+    description:
+      "Smart CRM setups that centralize leads, automate follow-ups, and give your sales team full visibility of every opportunity.",
+  },
+  {
+    title: "CMS Implementation",
+    description:
+      "Flexible content management systems so your team can update pages, publish content, and scale your website without developer dependency.",
+  },
+  {
+    title: "SEO Optimization",
+    description:
+      "Technical and on-page SEO improvements that boost search visibility, attract qualified traffic, and support long-term growth.",
+  },
+  {
+    title: "Maintenance & Support",
+    description:
+      "Ongoing monitoring, updates, and technical support to keep your digital platform secure, fast, and always available.",
+  },
+];
 ---
 
 <section id={id} class="mt-24 scroll-mt-24">
@@ -12,58 +46,10 @@ const { id } = Astro.props;
   />
 
   <div class="mt-6 grid gap-4 md:grid-cols-3">
-    <article class="service-card glass-card">
-      <h3 class="text-lg font-semibold">Landing Pages</h3>
-
-      <p class="mt-2 section-muted">
-        High-converting landing pages designed to capture leads, validate
-        offers, and turn traffic into real business opportunities.
-      </p>
-    </article>
-
-    <article class="service-card glass-card">
-      <h3 class="text-lg font-semibold">E-commerce Development</h3>
-
-      <p class="mt-2 section-muted">
-        Scalable online stores with optimized product flows, secure checkout,
-        and performance-focused UX to increase sales.
-      </p>
-    </article>
-
-    <article class="service-card glass-card">
-      <h3 class="text-lg font-semibold">CRM Integration</h3>
-
-      <p class="mt-2 section-muted">
-        Smart CRM setups that centralize leads, automate follow-ups, and give
-        your sales team full visibility of every opportunity.
-      </p>
-    </article>
-
-    <article class="service-card glass-card">
-      <h3 class="text-lg font-semibold">CMS Implementation</h3>
-
-      <p class="mt-2 section-muted">
-        Flexible content management systems so your team can update pages,
-        publish content, and scale your website without developer dependency.
-      </p>
-    </article>
-
-    <article class="service-card glass-card">
-      <h3 class="text-lg font-semibold">SEO Optimization</h3>
-
-      <p class="mt-2 section-muted">
-        Technical and on-page SEO improvements that boost search visibility,
-        attract qualified traffic, and support long-term growth.
-      </p>
-    </article>
-
-    <article class="service-card glass-card">
-      <h3 class="text-lg font-semibold">Maintenance & Support</h3>
-
-      <p class="mt-2 section-muted">
-        Ongoing monitoring, updates, and technical support to keep your digital
-        platform secure, fast, and always available.
-      </p>
-    </article>
+    {
+      services.map((service) => (
+        <FeatureCard title={service.title} description={service.description} />
+      ))
+    }
   </div>
 </section>
