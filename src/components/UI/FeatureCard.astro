@@ -1,0 +1,38 @@
+---
+import Icon from "@components/UI/Icon.astro";
+
+export interface Props {
+  title: string;
+  description: string;
+  icon?: string;
+  centered?: boolean;
+}
+
+const { title, description, icon, centered = false } = Astro.props;
+---
+
+<article
+  class:list={[
+    "service-card glass-card",
+    centered && "flex flex-col items-center text-center space-y-4",
+  ]}
+>
+  {
+    icon && (
+      <div class="w-14 h-14 rounded-2xl bg-[var(--surface-inset)] border border-white/5 flex items-center justify-center text-[var(--secondary)]">
+        <Icon name={icon} class="w-7 h-7" />
+      </div>
+    )
+  }
+  <h3 class:list={[centered ? "text-xl font-bold" : "text-lg font-semibold"]}>
+    {title}
+  </h3>
+  <p
+    class:list={[
+      "section-muted",
+      centered ? "text-sm leading-relaxed" : "mt-2",
+    ]}
+  >
+    {description}
+  </p>
+</article>
