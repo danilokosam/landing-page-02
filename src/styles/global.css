@@ -240,7 +240,8 @@ body.dark .logo-dark {
   .service-card::before {
     content: "";
     position: absolute;
-    inset: -50%;
+    height: 450px;
+    inset: -70%;
     z-index: 0;
     background: conic-gradient(
       from 0deg,
@@ -272,6 +273,7 @@ body.dark .logo-dark {
   }
 
   .service-card:hover::before {
+
     opacity: 1;
     animation: borderRotate 4s linear infinite;
   }
@@ -284,10 +286,8 @@ body.dark .logo-dark {
   }
 
   @keyframes borderRotate {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
+  
+  to {
       transform: rotate(360deg);
     }
   }
