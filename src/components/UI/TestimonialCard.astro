@@ -11,9 +11,7 @@ export interface Props {
 const { testimonial } = Astro.props;
 ---
 
-<div
-  class="glass-card hover:border-(--primary) rounded-xl p-4 w-96 shrink-0"
->
+<div class="glass-card hover:border-(--primary) rounded-xl p-4 w-96 shrink-0">
   <!-- 5 estrellas -->
   <div class="flex mb-4">
     {
@@ -21,7 +19,6 @@ const { testimonial } = Astro.props;
         .fill(0)
         .map((_, i) => (
           <svg
-          
             xmlns="http://www.w3.org/2000/svg"
             width="16"
             height="16"
