@@ -8,10 +8,10 @@ const { id } = Astro.props;
   >
     <!-- Image Placeholder -->
     <div
-      class="w-full max-w-[320px] aspect-[4/5] flex-shrink-0 bg-[var(--surface-inset)] rounded-2xl flex items-center justify-center text-muted/40 text-sm text-center p-8 border border-white/5 relative overflow-hidden group"
+      class="w-full max-w-80 aspect-square bg-current rounded-lg flex items-center justify-center text-muted/40 text-sm text-center p-8 border border-white/5 relative overflow-hidden group"
     >
       <div
-        class="absolute inset-0 bg-gradient-to-tr from-[var(--secondary)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        class="absolute inset-0 bg-linear-to-tr from-current/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
       >
       </div>
       <div class="relative z-10 flex flex-col items-center gap-4">
@@ -25,14 +25,14 @@ const { id } = Astro.props;
           stroke-width="1"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="opacity-20"
+          class="opacity-20 text-blue-700"
           ><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle
             cx="9"
             cy="9"
             r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"
           ></path></svg
         >
-        <p class="font-medium">Place Illustration Here</p>
+        <p class="font-medium text-blue-800">Place Illustration Here</p>
       </div>
     </div>
 
