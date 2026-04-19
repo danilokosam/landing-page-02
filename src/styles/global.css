@@ -240,7 +240,7 @@ body.dark .logo-dark {
   .service-card::before {
     content: "";
     position: absolute;
-    height: 450px;
+    height: 500px;
     inset: -70%;
     z-index: 0;
     background: conic-gradient(
