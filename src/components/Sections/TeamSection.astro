@@ -1,37 +1,38 @@
 ---
 import HeadingText from "@components/UI/HeadingText.astro";
+import danielImg from "@assets/shisui.jpg";
+import { Image } from "astro:assets";
 
 interface SocialLink {
-  platform: "twitter" | "github" | "slack";
+  platform: "twitter" | "github" | "website";
   url: string;
 }
 
 interface TeamMember {
   name: string;
   role: string;
-  image: string;
+  image: ImageMetadata | string;
   socials: SocialLink[];
 }
 
 const socialIcons: Record<SocialLink["platform"], string> = {
   twitter:
-    "M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z",
+    "M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.055-4.425 5.055H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.6.75zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633z",
   github:
     "M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z",
-  slack:
-    "M3.362 10.11c0 .926-.756 1.681-1.681 1.681S0 11.036 0 10.111C0 9.186.756 8.43 1.68 8.43h1.682v1.68zm.846 0c0-.924.756-1.68 1.681-1.68s1.681.756 1.681 1.68v4.21c0 .924-.756 1.68-1.68 1.68a1.685 1.685 0 0 1-1.682-1.68v-4.21zM5.89 3.362c-.926 0-1.682-.756-1.682-1.681S4.964 0 5.89 0s1.68.756 1.68 1.68v1.682H5.89zm0 .846c.924 0 1.68.756 1.68 1.681S6.814 7.57 5.89 7.57H1.68C.757 7.57 0 6.814 0 5.89c0-.926.756-1.682 1.68-1.682h4.21zm6.749 1.682c0-.926.755-1.682 1.68-1.682.925 0 1.681.756 1.681 1.681s-.756 1.681-1.68 1.681h-1.681V5.89zm-.848 0c0 .924-.755 1.68-1.68 1.68A1.685 1.685 0 0 1 8.43 5.89V1.68C8.43.757 9.186 0 10.11 0c.926 0 1.681.756 1.681 1.68v4.21zm-1.681 6.748c.926 0 1.682.756 1.682 1.681S11.036 16 10.11 16s-1.681-.756-1.681-1.68v-1.682h1.68zm0-.847c-.924 0-1.68-.755-1.68-1.68 0-.925.756-1.681 1.68-1.681h4.21c.924 0 1.68.756 1.68 1.68 0 .926-.756 1.681-1.68 1.681h-4.21z",
+  website:
+    "M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM14.326 7.5a7 7 0 0 0-.656-2.5h-2.076a11.5 11.5 0 0 1 .312 2.5zM12.017 4c-.13-.393-.277-.768-.436-1.118-.216-.475-.46-.88-.742-1.208A7.03 7.03 0 0 1 13.745 4zm-1.428-2.578c-.552 1.035-1.218 1.65-1.889 1.855V1.077a7 7 0 0 1 1.889.345zm-1.089 13.313c.67-.204 1.335-.82 1.887-1.855a8 8 0 0 0 .468-1.068H8.5zM11.91 12a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933 7.03 7.03 0 0 0 2.842-2.472zm.582-3.5c-.03.877-.138 1.718-.312 2.5h2.076c.228-.78.355-1.608.355-2.5zm-4.992 3.5a12.5 12.5 0 0 0 .338-2.5H8.5V12zM7.5 12v-2.5H4.51c.041.89.155 1.734.337 2.5zm-3.326 2.5a7 7 0 0 0 .656 2.5h2.076a11.5 11.5 0 0 1-.312-2.5zm-1.691-2.5c.13.393.277.768.436 1.118.216.475.46.88.742 1.208A7.03 7.03 0 0 1 2.255 12zm1.428 2.578c.552-1.035 1.218-1.65 1.889-1.855v1.855a7 7 0 0 1-1.889-.345z",
 };
 
 const teamMembers: TeamMember[] = [
   {
-    name: "David Forren",
-    role: "Founder / CEO",
-    image:
-      "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
+    name: "Danilo",
+    role: "Full-stack Developer",
+    image: danielImg,
     socials: [
-      { platform: "twitter", url: "#" },
-      { platform: "github", url: "#" },
-      { platform: "slack", url: "#" },
+      { platform: "twitter", url: "https://x.com/Danilokosam" },
+      { platform: "github", url: "https://github.com/danilokosam" },
+      { platform: "website", url: "https://portfolio-2025-dxni.netlify.app/" },
     ],
   },
   {
@@ -42,7 +43,7 @@ const teamMembers: TeamMember[] = [
     socials: [
       { platform: "twitter", url: "#" },
       { platform: "github", url: "#" },
-      { platform: "slack", url: "#" },
+      { platform: "website", url: "#" },
     ],
   },
   {
@@ -53,64 +54,64 @@ const teamMembers: TeamMember[] = [
     socials: [
       { platform: "twitter", url: "#" },
       { platform: "github", url: "#" },
-      { platform: "slack", url: "#" },
+      { platform: "website", url: "#" },
     ],
   },
-  {
-    name: "Maria Powers",
-    role: "Director of sales",
-    image:
-      "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-    socials: [
-      { platform: "twitter", url: "#" },
-      { platform: "github", url: "#" },
-      { platform: "slack", url: "#" },
-    ],
-  },
-  {
-    name: "Delia Pawelke",
-    role: "Front-end Developer",
-    image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-    socials: [
-      { platform: "twitter", url: "#" },
-      { platform: "github", url: "#" },
-      { platform: "slack", url: "#" },
-    ],
-  },
-  {
-    name: "Tom Lowry",
-    role: "UI/UX Designer",
-    image:
-      "https://images.unsplash.com/photo-1624224971170-2f84fed5eb5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-    socials: [
-      { platform: "twitter", url: "#" },
-      { platform: "github", url: "#" },
-      { platform: "slack", url: "#" },
-    ],
-  },
-  {
-    name: "Louise Donadieu",
-    role: "Support Consultant",
-    image:
-      "https://images.unsplash.com/photo-1579017331263-ef82f0bbc748?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-    socials: [
-      { platform: "twitter", url: "#" },
-      { platform: "github", url: "#" },
-      { platform: "slack", url: "#" },
-    ],
-  },
-  {
-    name: "Jeff Fisher",
-    role: "Project Manager",
-    image:
-      "https://images.unsplash.com/photo-1514222709107-a180c68d72b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-    socials: [
-      { platform: "twitter", url: "#" },
-      { platform: "github", url: "#" },
-      { platform: "slack", url: "#" },
-    ],
-  },
+  // {
+  //   name: "Maria Powers",
+  //   role: "Director of sales",
+  //   image:
+  //     "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
+  //   socials: [
+  //     { platform: "twitter", url: "#" },
+  //     { platform: "github", url: "#" },
+  //     { platform: "website", url: "#" },
+  //   ],
+  // },
+  // {
+  //   name: "Delia Pawelke",
+  //   role: "Front-end Developer",
+  //   image:
+  //     "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
+  //   socials: [
+  //     { platform: "twitter", url: "#" },
+  //     { platform: "github", url: "#" },
+  //     { platform: "website", url: "#" },
+  //   ],
+  // },
+  // {
+  //   name: "Tom Lowry",
+  //   role: "UI/UX Designer",
+  //   image:
+  //     "https://images.unsplash.com/photo-1624224971170-2f84fed5eb5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
+  //   socials: [
+  //     { platform: "twitter", url: "#" },
+  //     { platform: "github", url: "#" },
+  //     { platform: "website", url: "#" },
+  //   ],
+  // },
+  // {
+  //   name: "Louise Donadieu",
+  //   role: "Support Consultant",
+  //   image:
+  //     "https://images.unsplash.com/photo-1579017331263-ef82f0bbc748?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
+  //   socials: [
+  //     { platform: "twitter", url: "#" },
+  //     { platform: "github", url: "#" },
+  //     { platform: "website", url: "#" },
+  //   ],
+  // },
+  // {
+  //   name: "Jeff Fisher",
+  //   role: "Project Manager",
+  //   image:
+  //     "https://images.unsplash.com/photo-1514222709107-a180c68d72b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
+  //   socials: [
+  //     { platform: "twitter", url: "#" },
+  //     { platform: "github", url: "#" },
+  //     { platform: "website", url: "#" },
+  //   ],
+  // },
 ];
 ---
 
@@ -123,18 +124,28 @@ const teamMembers: TeamMember[] = [
       textGradient="crew"
     />
 
-    <p class="mt-1 text-[var(--primary)]">Creative people</p>
+    <p class="mt-1 text-(--primary)">Creative people</p>
   </div>
 
   <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
     {
       teamMembers.map((member) => (
         <div class="flex flex-col items-center text-center sm:items-center gap-3 sm:gap-4">
-          <img
-            class="rounded-lg size-20"
-            src={member.image}
-            alt={member.name}
-          />
+          {typeof member.image === "string" ? (
+            <img
+              class="rounded-lg size-20"
+              src={member.image}
+              alt={member.name}
+            />
+          ) : (
+            <Image
+              class="rounded-lg size-20"
+              src={member.image}
+              alt={member.name}
+              width={80}
+              height={80}
+            />
+          )}
           <div class="grow">
             <div>
               <h3 class="font-medium text-foreground">{member.name}</h3>
