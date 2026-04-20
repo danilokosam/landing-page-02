@@ -9,6 +9,7 @@ import ServicesSection from "@components/Sections/ServicesSection.astro";
 import HeroSection from "@components/Sections/HeroSection.astro";
 import FormSection from "@components/Sections/FormSection.astro";
 import TeamSection from "@components/Sections/TeamSection.astro";
+const formId = import.meta.env.PUBLIC_HUBSPOT_FORM_ID;
 ---
 
 <BaseLayout
@@ -19,11 +20,10 @@ import TeamSection from "@components/Sections/TeamSection.astro";
     <HeroSection />
     <ServicesSection id="services" />
     <AboutSection id="about" />
-    <TeamSection/>
-    <Sponsors />
+    <TeamSection />
     <HowItWorks id="process" />
     <FaqSection id="faq" />
     <TestimonialSection />
-    <FormSection id="project-form" />
+    <FormSection id="project-form" formGuid={formId} client:load />
   </main>
 </BaseLayout>

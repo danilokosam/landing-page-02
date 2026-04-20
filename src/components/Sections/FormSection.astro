@@ -3,9 +3,10 @@ import HeadingText from "@components/UI/HeadingText.astro";
 
 interface Props {
   id?: string;
+  formGuid: string;
 }
 
-const { id } = Astro.props;
+const { id, formGuid } = Astro.props;
 ---
 
 <section id={id} class="mt-24 scroll-mt-24">
@@ -48,7 +49,9 @@ const { id } = Astro.props;
             </p>
           </div>
 
-          <div class="md:info-card rounded-lg md:border border-(--card-border) md:p-4">
+          <div
+            class="md:info-card rounded-lg md:border border-(--card-border) md:p-4"
+          >
             <p class="text-sm font-semibold text-(--text)">Clear brief</p>
             <p class="mt-2 text-sm leading-6 text-(--muted)">
               A short project idea helps frame scope, goals and the right next
@@ -59,28 +62,59 @@ const { id } = Astro.props;
       </div>
 
       <form
+        id="contact-form"
         class="rounded-lg border border-(--card-border) bg-(--surface)/90 p-5 shadow-[0_24px_60px_-35px_rgba(15,23,42,0.55)] sm:p-7"
-        action="#"
-        method="post"
+        novalidate
       >
+        <!-- Hidden field required by the endpoint -->
+        <input type="hidden" name="formGuid" value={formGuid} />
+
         <div class="grid gap-5">
           <div>
             <label
               class="mb-2 block text-sm font-medium text-(--text)"
-              for="name"
+              for="firstname"
             >
               Name
             </label>
             <input
-              id="name"
-              name="name"
+              id="firstname"
+              name="firstname"
               type="text"
               placeholder="Your full name"
               required
-              minlength="3"
+              minlength="1"
               maxlength="80"
               class="form-field w-full rounded-lg border border-(--card-border) bg-(--bg) px-4 py-3 text-base text-(--text) placeholder:text-(--muted)"
             />
+            <p
+              class="form-error mt-1.5 hidden text-sm text-red-500"
+              data-field="firstname"
+            >
+            </p>
+          </div>
+
+          <div>
+            <label
+              class="mb-2 block text-sm font-medium text-(--text)"
+              for="email"
+            >
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+              required
+              maxlength="254"
+              class="form-field w-full rounded-lg border border-(--card-border) bg-(--bg) px-4 py-3 text-base text-(--text) placeholder:text-(--muted)"
+            />
+            <p
+              class="form-error mt-1.5 hidden text-sm text-red-500"
+              data-field="email"
+            >
+            </p>
           </div>
 
           <div>
@@ -102,33 +136,47 @@ const { id } = Astro.props;
               inputmode="tel"
               class="form-field w-full rounded-lg border border-(--card-border) bg-(--bg) px-4 py-3 text-base text-(--text) placeholder:text-(--muted)"
             />
+            <p
+              class="form-error mt-1.5 hidden text-sm text-red-500"
+              data-field="phone"
+            >
+            </p>
           </div>
 
           <div>
             <label
               class="mb-2 block text-sm font-medium text-(--text)"
-              for="project-idea"
+              for="message"
             >
               Project idea
             </label>
             <textarea
-              id="project-idea"
-              name="projectIdea"
+              id="message"
+              name="message"
               placeholder="Describe your project idea"
               required
-              minlength="20"
+              minlength="10"
               maxlength="500"
               rows="6"
               class="form-field min-h-36 w-full rounded-lg border border-(--card-border) bg-(--bg) px-4 py-3 text-base text-(--text) placeholder:text-(--muted)"
             ></textarea>
+            <p
+              class="form-error mt-1.5 hidden text-sm text-red-500"
+              data-field="message"
+            >
+            </p>
           </div>
+
+          <!-- Global feedback message -->
+          <p id="form-feedback" class="hidden text-sm font-medium"></p>
 
           <div
             class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
           >
             <button
+              id="submit-btn"
               type="submit"
-              class="inline-flex items-center justify-center rounded-lg bg-(--primary) px-6 py-3.5 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-1"
+              class="inline-flex items-center justify-center rounded-lg bg-(--primary) px-6 py-3.5 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-1 disabled:cursor-not-allowed disabled:opacity-60"
             >
               Start Your Project
             </button>
@@ -201,7 +249,95 @@ const { id } = Astro.props;
     outline: none;
   }
 
+  .form-field.field-error {
+    border-color: rgb(239 68 68);
+    box-shadow: 0 0 0 4px rgb(239 68 68 / 0.12);
+  }
+
   textarea.form-field {
     resize: vertical;
   }
 </style>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
+  const feedback = document.getElementById(
+    "form-feedback",
+  ) as HTMLParagraphElement;
+
+  function clearErrors() {
+    form.querySelectorAll<HTMLParagraphElement>(".form-error").forEach((el) => {
+      el.textContent = "";
+      el.classList.add("hidden");
+    });
+    form
+      .querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(".form-field")
+      .forEach((el) => {
+        el.classList.remove("field-error");
+      });
+    feedback.textContent = "";
+    feedback.className = "hidden text-sm font-medium";
+  }
+
+  function showFieldErrors(fieldErrors: Record<string, string[]>) {
+    for (const [field, messages] of Object.entries(fieldErrors)) {
+      const errorEl = form.querySelector<HTMLParagraphElement>(
+        `[data-field="${field}"]`,
+      );
+      const inputEl = form.querySelector<
+        HTMLInputElement | HTMLTextAreaElement
+      >(`[name="${field}"]`);
+      if (errorEl && messages.length > 0) {
+        errorEl.textContent = messages[0];
+        errorEl.classList.remove("hidden");
+      }
+      if (inputEl) {
+        inputEl.classList.add("field-error");
+      }
+    }
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    clearErrors();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    try {
+      const formData = new FormData(form);
+
+      const res = await fetch("/api/hubspot/forms/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        if (data.details) {
+          showFieldErrors(data.details);
+        } else {
+          feedback.textContent =
+            data.error || "Something went wrong. Please try again.";
+          feedback.className = "text-sm font-medium text-red-500";
+        }
+        return;
+      }
+
+      // Success
+      form.reset();
+      feedback.textContent =
+        data.inlineMessage ?? "Thank you! We'll be in touch soon.";
+      feedback.className = "text-sm font-medium text-green-500";
+    } catch {
+      feedback.textContent =
+        "Network error. Please check your connection and try again.";
+      feedback.className = "text-sm font-medium text-red-500";
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Start Your Project";
+    }
+  });
+</script>

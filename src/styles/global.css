@@ -273,7 +273,6 @@ body.dark .logo-dark {
   }
 
   .service-card:hover::before {
-
     opacity: 1;
     animation: borderRotate 4s linear infinite;
   }
@@ -286,8 +285,7 @@ body.dark .logo-dark {
   }
 
   @keyframes borderRotate {
-  
-  to {
+    to {
       transform: rotate(360deg);
     }
   }
