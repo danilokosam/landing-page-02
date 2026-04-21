@@ -1,180 +1,116 @@
 ---
 import HeadingText from "@components/UI/HeadingText.astro";
 import danielImg from "@assets/shisui.jpg";
+import santiagoImg from "@assets/profile-ys.webp";
+import evelynImg from "@assets/evenlyn-Designer.webp"
 import { Image } from "astro:assets";
 
 interface SocialLink {
-  platform: "twitter" | "github" | "website";
-  url: string;
+	platform: "twitter" | "github" | "website";
+	url: string;
 }
 
 interface TeamMember {
-  name: string;
-  role: string;
-  image: ImageMetadata | string;
-  socials: SocialLink[];
+	name: string;
+	role: string;
+	image: ImageMetadata | string;
+	socials: SocialLink[];
 }
 
 const socialIcons: Record<SocialLink["platform"], string> = {
-  twitter:
-    "M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.055-4.425 5.055H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.6.75zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633z",
-  github:
-    "M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z",
-  website:
-    "M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM14.326 7.5a7 7 0 0 0-.656-2.5h-2.076a11.5 11.5 0 0 1 .312 2.5zM12.017 4c-.13-.393-.277-.768-.436-1.118-.216-.475-.46-.88-.742-1.208A7.03 7.03 0 0 1 13.745 4zm-1.428-2.578c-.552 1.035-1.218 1.65-1.889 1.855V1.077a7 7 0 0 1 1.889.345zm-1.089 13.313c.67-.204 1.335-.82 1.887-1.855a8 8 0 0 0 .468-1.068H8.5zM11.91 12a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933 7.03 7.03 0 0 0 2.842-2.472zm.582-3.5c-.03.877-.138 1.718-.312 2.5h2.076c.228-.78.355-1.608.355-2.5zm-4.992 3.5a12.5 12.5 0 0 0 .338-2.5H8.5V12zM7.5 12v-2.5H4.51c.041.89.155 1.734.337 2.5zm-3.326 2.5a7 7 0 0 0 .656 2.5h2.076a11.5 11.5 0 0 1-.312-2.5zm-1.691-2.5c.13.393.277.768.436 1.118.216.475.46.88.742 1.208A7.03 7.03 0 0 1 2.255 12zm1.428 2.578c.552-1.035 1.218-1.65 1.889-1.855v1.855a7 7 0 0 1-1.889-.345z",
+	twitter:
+		"M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.055-4.425 5.055H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.6.75zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633z",
+	github: "M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z",
+	website:
+		"M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM14.326 7.5a7 7 0 0 0-.656-2.5h-2.076a11.5 11.5 0 0 1 .312 2.5zM12.017 4c-.13-.393-.277-.768-.436-1.118-.216-.475-.46-.88-.742-1.208A7.03 7.03 0 0 1 13.745 4zm-1.428-2.578c-.552 1.035-1.218 1.65-1.889 1.855V1.077a7 7 0 0 1 1.889.345zm-1.089 13.313c.67-.204 1.335-.82 1.887-1.855a8 8 0 0 0 .468-1.068H8.5zM11.91 12a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933 7.03 7.03 0 0 0 2.842-2.472zm.582-3.5c-.03.877-.138 1.718-.312 2.5h2.076c.228-.78.355-1.608.355-2.5zm-4.992 3.5a12.5 12.5 0 0 0 .338-2.5H8.5V12zM7.5 12v-2.5H4.51c.041.89.155 1.734.337 2.5zm-3.326 2.5a7 7 0 0 0 .656 2.5h2.076a11.5 11.5 0 0 1-.312-2.5zm-1.691-2.5c.13.393.277.768.436 1.118.216.475.46.88.742 1.208A7.03 7.03 0 0 1 2.255 12zm1.428 2.578c.552-1.035 1.218-1.65 1.889-1.855v1.855a7 7 0 0 1-1.889-.345z",
 };
 
 const teamMembers: TeamMember[] = [
-  {
-    name: "Danilo",
-    role: "Full-stack Developer",
-    image: danielImg,
-    socials: [
-      { platform: "twitter", url: "https://x.com/Danilokosam" },
-      { platform: "github", url: "https://github.com/danilokosam" },
-      { platform: "website", url: "https://portfolio-2025-dxni.netlify.app/" },
-    ],
-  },
-  {
-    name: "Amil Evara",
-    role: "UI/UX Designer",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-    socials: [
-      { platform: "twitter", url: "#" },
-      { platform: "github", url: "#" },
-      { platform: "website", url: "#" },
-    ],
-  },
-  {
-    name: "Ebele Egbuna",
-    role: "Support Consultant",
-    image:
-      "https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-    socials: [
-      { platform: "twitter", url: "#" },
-      { platform: "github", url: "#" },
-      { platform: "website", url: "#" },
-    ],
-  },
-  // {
-  //   name: "Maria Powers",
-  //   role: "Director of sales",
-  //   image:
-  //     "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-  //   socials: [
-  //     { platform: "twitter", url: "#" },
-  //     { platform: "github", url: "#" },
-  //     { platform: "website", url: "#" },
-  //   ],
-  // },
-  // {
-  //   name: "Delia Pawelke",
-  //   role: "Front-end Developer",
-  //   image:
-  //     "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-  //   socials: [
-  //     { platform: "twitter", url: "#" },
-  //     { platform: "github", url: "#" },
-  //     { platform: "website", url: "#" },
-  //   ],
-  // },
-  // {
-  //   name: "Tom Lowry",
-  //   role: "UI/UX Designer",
-  //   image:
-  //     "https://images.unsplash.com/photo-1624224971170-2f84fed5eb5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-  //   socials: [
-  //     { platform: "twitter", url: "#" },
-  //     { platform: "github", url: "#" },
-  //     { platform: "website", url: "#" },
-  //   ],
-  // },
-  // {
-  //   name: "Louise Donadieu",
-  //   role: "Support Consultant",
-  //   image:
-  //     "https://images.unsplash.com/photo-1579017331263-ef82f0bbc748?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-  //   socials: [
-  //     { platform: "twitter", url: "#" },
-  //     { platform: "github", url: "#" },
-  //     { platform: "website", url: "#" },
-  //   ],
-  // },
-  // {
-  //   name: "Jeff Fisher",
-  //   role: "Project Manager",
-  //   image:
-  //     "https://images.unsplash.com/photo-1514222709107-a180c68d72b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-  //   socials: [
-  //     { platform: "twitter", url: "#" },
-  //     { platform: "github", url: "#" },
-  //     { platform: "website", url: "#" },
-  //   ],
-  // },
+	{
+		name: "Danilo",
+		role: "Full-stack Developer",
+		image: danielImg,
+		socials: [
+			{ platform: "twitter", url: "https://x.com/Danilokosam" },
+			{ platform: "github", url: "https://github.com/danilokosam" },
+			{ platform: "website", url: "https://portfolio-2025-dxni.netlify.app/" },
+		],
+	},
+	{
+		name: "Evelyn",
+		role: "Developer & UI Designer",
+		image: evelynImg,
+		socials: [
+			{ platform: "twitter", url: "https://x.com/devepy" },
+			// { platform: "github", url: "#" },
+			{ platform: "website", url: "https://contra.com/evelyn_barrantes/work?r=evelyn_barrantes" },
+		],
+	},
+	{
+		name: "Santiago",
+		role: "Full-stack Developer",
+		image: santiagoImg,
+		socials: [
+			// { platform: "twitter", url: "#" },
+			{ platform: "github", url: "https://github.com/Unlockeagle" },
+			{ platform: "website", url: "https://santiagodev.dev" },
+		],
+	},
 ];
 ---
 
-<div class="w-full px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-  <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
-    <HeadingText
-      level={2}
-      text="Meet the"
-      className="text-4xl"
-      textGradient="crew"
-    />
+<div class="w-full px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto autoShow">
+	<div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
+		<HeadingText level={2} text="Meet the" className="text-4xl" textGradient="crew" />
 
-    <p class="mt-1 text-(--primary)">Creative people</p>
-  </div>
+		<p class="mt-1 text-(--primary)">Creative people</p>
+	</div>
 
-  <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
-    {
-      teamMembers.map((member) => (
-        <div class="flex flex-col items-center text-center sm:items-center gap-3 sm:gap-4">
-          {typeof member.image === "string" ? (
-            <img
-              class="rounded-lg size-20"
-              src={member.image}
-              alt={member.name}
-            />
-          ) : (
-            <Image
-              class="rounded-lg size-20"
-              src={member.image}
-              alt={member.name}
-              width={80}
-              height={80}
-            />
-          )}
-          <div class="grow">
-            <div>
-              <h3 class="font-medium text-foreground">{member.name}</h3>
-              <p class="mt-1 text-xs uppercase text-muted-foreground-1">
-                {member.role}
-              </p>
-            </div>
-            <div class="mt-2 sm:mt-auto space-x-2.5">
-              {member.socials.map((social) => (
-                <a
-                  class="inline-flex justify-center items-center text-muted-foreground-1 rounded-full hover:text-foreground focus:outline-hidden focus:text-foreground"
-                  href={social.url}
-                >
-                  <svg
-                    class="shrink-0 size-3.5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d={socialIcons[social.platform]} />
-                  </svg>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      ))
-    }
-  </div>
+	<div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+		{
+			teamMembers.map((member) => (
+				<div class="flex flex-col items-center text-center sm:items-center gap-3 sm:gap-4">
+					{typeof member.image === "string" ? (
+						<img class="rounded-lg size-20" src={member.image} alt={member.name} />
+					) : (
+						<Image
+							class="rounded-lg size-20"
+							src={member.image}
+							alt={member.name}
+							width={80}
+							height={80}
+						/>
+					)}
+					<div class="grow">
+						<div>
+							<h3 class="font-medium text-foreground">{member.name}</h3>
+							<p class="mt-1 text-xs uppercase text-muted-foreground-1">
+								{member.role}
+							</p>
+						</div>
+						<div class="mt-2 sm:mt-auto space-x-2.5">
+							{member.socials.map((social) => (
+								<a
+									class="inline-flex justify-center items-center text-muted-foreground-1 rounded-full hover:text-foreground focus:outline-hidden focus:text-foreground"
+									href={social.url}
+                  target="_blank"
+								>
+									<svg
+										class="shrink-0 size-3.5"
+										xmlns="http://www.w3.org/2000/svg"
+										width="16"
+										height="16"
+										fill="currentColor"
+										viewBox="0 0 16 16"
+									>
+										<path d={socialIcons[social.platform]} />
+									</svg>
+								</a>
+							))}
+						</div>
+					</div>
+				</div>
+			))
+		}
+	</div>
 </div>
