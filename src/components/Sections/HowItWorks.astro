@@ -1,7 +1,17 @@
 ---
 import HeadingText from "@components/UI/HeadingText.astro";
 import FeatureCard from "@components/UI/FeatureCard.astro";
-const { id } = Astro.props;
+
+import { useTranslations } from "@i18n/utils";
+import type { Lang } from "@i18n/ui";
+
+export interface Props {
+	id?: string;
+	lang?: Lang;
+}
+
+const { id, lang = "es" } = Astro.props;
+const t = useTranslations(lang);
 
 const steps = [
   {
