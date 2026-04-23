@@ -2,6 +2,13 @@
 import Navigation from "@components/Global/Navigation.astro";
 import logoLight from "@assets/arka-1-light.svg";
 import logoDark from "@assets/arka-1-dark.svg";
+import type { Lang } from "@i18n/ui";
+
+export interface Props {
+  lang?: Lang;
+}
+
+const { lang = "es" } = Astro.props;
 ---
 
 <header
@@ -32,7 +39,7 @@ import logoDark from "@assets/arka-1-dark.svg";
         />
       </span>
     </a>
-    <Navigation />
+    <Navigation lang={lang} />
   </div>
 
   <!-- Gradient border -->

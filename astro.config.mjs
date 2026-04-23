@@ -8,6 +8,14 @@ export default defineConfig({
   site: "https://landing-page-02.example.com",
   output: "server",
 
+  i18n: {
+    locales: ["es", "en"],
+    defaultLocale: "es",
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },

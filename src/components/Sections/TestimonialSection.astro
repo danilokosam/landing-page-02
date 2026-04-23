@@ -2,6 +2,15 @@
 import HeadingText from "@components/UI/HeadingText.astro";
 import Badge from "@components/UI/Badge.astro";
 import TestimonialCard from "@components/UI/TestimonialCard.astro";
+import { useTranslations } from "@i18n/utils";
+import type { Lang } from "@i18n/ui";
+
+export interface Props {
+  lang?: Lang;
+}
+
+const { lang = "es" } = Astro.props;
+const t = useTranslations(lang);
 
 const testimonials = [
   {
@@ -58,17 +67,16 @@ const testimonials = [
 <section class="autoShow">
   <div class="max-w-6xl mx-auto">
     <div class="text-center flex flex-col justify-center gap-4 mb-8">
-      <Badge text="Loved by clients" />
+      <Badge text={t["testimonials.badge"]} />
       <HeadingText
         level={2}
-        text="What people are"
-        textGradient="saying"
+        text={t["testimonials.headingStart"]}
+        textGradient={t["testimonials.headingGradient"]}
         className="text-center text-3xl font-bold md:text-5xl tracking-tight"
       />
 
       <p class="section-muted max-w-2xl mx-auto">
-        Real feedback from founders, developers and teams building
-        production-ready products.
+        {t["testimonials.subtitle"]}
       </p>
     </div>
 

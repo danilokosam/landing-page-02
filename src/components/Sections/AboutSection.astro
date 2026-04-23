@@ -1,5 +1,14 @@
 ---
-const { id } = Astro.props;
+import { useTranslations } from "@i18n/utils";
+import type { Lang } from "@i18n/ui";
+
+export interface Props {
+  id?: string;
+  lang?: Lang;
+}
+
+const { id, lang = "es" } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section id={id} class="mt-32 scroll-mt-20 autoShow">
@@ -16,42 +25,36 @@ const { id } = Astro.props;
 
     <div class="flex-1 space-y-10 ">
       <h2 class="text-4xl font-bold tracking-tight md:text-5xl">
-        <span class="hero-gradient">About</span> Arka
+        <span class="hero-gradient">{t["about.titleStart"]}</span> Arka
       </h2>
 
       <p class="section-muted text-lg leading-relaxed">
-        At Arka, we help brands and businesses build a digital presence that
-        looks professional and, above all, drives real results. We work with a
-        clear process from day one: we listen to your goals, define a simple
-        path forward, and support you at every step.
+        {t["about.p1"]}
       </p>
 
       <p class="section-muted text-lg leading-relaxed">
-        We offer website services, landing pages, e-commerce development, SEO,
-        and CMS implementation. Our focus is to deliver practical solutions
-        that are easy to manage and aligned with your business, with no
-        unnecessary complexity and no empty promises.
+        {t["about.p2"]}
       </p>
 
       <div class="grid grid-cols-2 gap-8 pt-6 md:grid-cols-4">
         <div class="space-y-1">
           <p class="text-3xl font-bold">01</p>
-          <p class="section-muted text-sm">Clear communication</p>
+          <p class="section-muted text-sm">{t["about.value1"]}</p>
         </div>
 
         <div class="space-y-1">
           <p class="text-3xl font-bold">02</p>
-          <p class="section-muted text-sm">Transparent process</p>
+          <p class="section-muted text-sm">{t["about.value2"]}</p>
         </div>
 
         <div class="space-y-1">
           <p class="text-3xl font-bold">03</p>
-          <p class="section-muted text-sm">Results-focused approach</p>
+          <p class="section-muted text-sm">{t["about.value3"]}</p>
         </div>
 
         <div class="space-y-1">
           <p class="text-3xl font-bold">04</p>
-          <p class="section-muted text-sm">Real support</p>
+          <p class="section-muted text-sm">{t["about.value4"]}</p>
         </div>
       </div>
     </div>
