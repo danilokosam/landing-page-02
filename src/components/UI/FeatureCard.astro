@@ -13,8 +13,8 @@ const { title, description, icon, centered = false } = Astro.props;
 
 <article
   class:list={[
-    "service-card glass-card",
-    centered && "flex flex-col items-center text-center space-y-4",
+    "service-card glass-card autoShow",
+    centered && "flex flex-col items-center text-center  space-y-4",
   ]}
 >
   {
