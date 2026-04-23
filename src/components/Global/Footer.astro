@@ -12,62 +12,64 @@ const { lang = "es" } = Astro.props;
 const t = useTranslations(lang);
 
 const footerOptions = [
-	{
-		title: t["footer.about"],
-		labels: [
-			{ label: t["footer.services"], url: "#services" },
-			{ label: t["footer.aboutUs"], url: "#about" },
-			{ label: t["footer.howItWorks"], url: "#process" },
-			{ label: t["footer.faq"], url: "#faq" },
-		],
-	},
-	{
-		title: t["footer.contact"],
-		labels: [
-			{ label: t["footer.talkWithUs"], url: "#project-form" },
-		],
-	},
+  {
+    title: t["footer.about"],
+    labels: [
+      { label: t["footer.services"], url: "#services" },
+      { label: t["footer.aboutUs"], url: "#about" },
+      { label: t["footer.howItWorks"], url: "#process" },
+      { label: t["footer.faq"], url: "#faq" },
+    ],
+  },
+  {
+    title: t["footer.contact"],
+    labels: [{ label: t["footer.talkWithUs"], url: "#project-form" }],
+  },
 ];
 ---
 
-<footer class="w-full border-t border-[var(--primary)]/20 mt-32">
-	<div
-		class="container w-full mx-auto max-w-7xl flex flex-col md:flex-row text-start justify-center md:justify-between py-20 px-12 lg:px-0"
-	>
-		<div class="w-full md:w-96 py-10 md:py-0">
-			<span class="inline-flex items-center justify-center w-16 h-16 mb-2">
-				<img src={logoDark.src} alt="arca Logo dark" class="hidden dark:inline w-16 h-16" />
-				<img
-					src={logoLight.src}
-					alt="arca Logo light"
-					class="inline dark:hidden w-16 h-16"
-				/>
-			</span>
+<footer class="w-full border-t border-(--primary)/20 mt-32">
+  <div
+    class="container w-full mx-auto max-w-7xl flex flex-col md:flex-row text-start justify-center md:justify-between py-20 px-12 lg:px-0"
+  >
+    <div class="w-full md:w-96 py-10 md:py-0">
+      <span class="inline-flex items-center justify-center w-16 h-16 mb-2">
+        <img
+          src={logoDark.src}
+          alt="arca Logo dark"
+          class="hidden dark:inline w-16 h-16"
+        />
+        <img
+          src={logoLight.src}
+          alt="arca Logo light"
+          class="inline dark:hidden w-16 h-16"
+        />
+      </span>
 
-			<p class="mt-2 max-w-72 text-sm text-slate-500">
-				{t["footer.tagline"]}
-			</p>
-		</div>
-		<nav class="w-full grid grid-cols-2 md:grid-cols-3 max-w-md text-start gap-10">
-			{
-				footerOptions.map((el) => (
-					<div>
-						<h3 class="font-bold">{el.title}</h3>
-						<ul class="mt-3 space-y-2">
-							{el.labels.map((item) => (
-								<li class="">
-									<a
-										class="transition-colors hover:text-[var(--ring)]"
-										href={item.url}
-									>
-										{item.label}
-									</a>
-								</li>
-							))}
-						</ul>
-					</div>
-				))
-			}
-		</nav>
-	</div>
+      <p class="mt-2 max-w-72 text-sm text-slate-500">
+        {t["footer.tagline"]}
+      </p>
+    </div>
+    <nav class="w-full grid grid-cols-2 max-w-md text-start gap-10">
+      {
+        footerOptions.map((el) => (
+          <div>
+            <h3 class="font-bold">{el.title}</h3>
+            <ul class="mt-3 space-y-2">
+              {el.labels.map((item) => (
+                <li class="">
+                  <a
+                    class="transition-colors hover:text-(--ring)"
+                    href={item.url}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </nav>
+  </div>
 </footer>
