@@ -182,8 +182,7 @@ export const es = {
   "form.submitBtn": "Inicia tu proyecto",
   "form.sending": "Enviando...",
   "form.errorDefault": "Algo salió mal. Por favor intenta de nuevo.",
-  "form.networkError":
-    "Error de red. Verifica tu conexión e intenta de nuevo.",
+  "form.networkError": "Error de red. Verifica tu conexión e intenta de nuevo.",
   "form.successDefault": "¡Gracias! Nos pondremos en contacto pronto.",
 
   // Team

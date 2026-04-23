@@ -6,8 +6,8 @@ import { useTranslations } from "@i18n/utils";
 import type { Lang } from "@i18n/ui";
 
 export interface Props {
-	id?: string;
-	lang?: Lang;
+  id?: string;
+  lang?: Lang;
 }
 
 const { id, lang = "es" } = Astro.props;
@@ -41,7 +41,7 @@ const steps = [
 ];
 ---
 
-<section id={id} class="mt-32 text-center scroll-mt-24 ">
+<section id={id} class="mt-32 text-center scroll-mt-24">
   <div class="space-y-4 autoShow">
     <HeadingText
       level={2}

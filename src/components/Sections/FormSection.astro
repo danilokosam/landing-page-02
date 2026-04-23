@@ -13,7 +13,7 @@ const { id, formGuid, lang = "es" } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<section id={id} class="mt-24 scroll-mt-24 autoShow">
+<section id={id} class="mt-24 scroll-mt-44 autoShow">
   <div
     class="form-showcase relative overflow-hidden rounded-lg border border-(--card-border) bg-(--card-bg) px-6 py-8 shadow-[0_30px_80px_-40px_var(--primary)] backdrop-blur-xl sm:px-8 lg:px-10 lg:py-10"
   >
@@ -45,7 +45,9 @@ const t = useTranslations(lang);
           <div
             class="md:info-card rounded-lg md:border-2 border-(--card-border) md:p-4"
           >
-            <p class="text-sm font-semibold text-(--text)">{t["form.fastContact"]}</p>
+            <p class="text-sm font-semibold text-(--text)">
+              {t["form.fastContact"]}
+            </p>
             <p class="mt-2 text-sm leading-6 text-(--muted)">
               {t["form.fastContactDesc"]}
             </p>
@@ -54,7 +56,9 @@ const t = useTranslations(lang);
           <div
             class="md:info-card rounded-lg md:border border-(--card-border) md:p-4"
           >
-            <p class="text-sm font-semibold text-(--text)">{t["form.clearBrief"]}</p>
+            <p class="text-sm font-semibold text-(--text)">
+              {t["form.clearBrief"]}
+            </p>
             <p class="mt-2 text-sm leading-6 text-(--muted)">
               {t["form.clearBriefDesc"]}
             </p>
@@ -340,7 +344,8 @@ const t = useTranslations(lang);
       feedback.className = "text-sm font-medium text-red-500";
     } finally {
       submitBtn.disabled = false;
-      submitBtn.textContent = submitBtn.dataset.labelDefault ?? "Start Your Project";
+      submitBtn.textContent =
+        submitBtn.dataset.labelDefault ?? "Start Your Project";
     }
   });
 </script>
