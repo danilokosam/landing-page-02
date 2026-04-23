@@ -1,13 +1,22 @@
 ---
 import Icon from "@components/UI/Icon.astro";
 import ThemeIcon from "@components/UI/ThemeIcon.astro";
+import LanguagePicker from "@components/UI/LanguagePicker.astro";
+import { useTranslations, type Lang } from "@i18n/utils";
+
+export interface Props {
+  lang?: Lang;
+}
+
+const { lang = "es" } = Astro.props;
+const t = useTranslations(lang);
 
 // Navigation items
 const navItems = [
-  { text: "Services", href: "#services" },
-  { text: "About", href: "#about" },
-  { text: "Process", href: "#process" },
-  { text: "FAQ", href: "#faq" },
+  { text: t["nav.services"], href: "#services" },
+  { text: t["nav.about"], href: "#about" },
+  { text: t["nav.process"], href: "#process" },
+  { text: t["nav.faq"], href: "#faq" },
 ];
 ---
 
@@ -33,6 +42,8 @@ const navItems = [
 </nav>
 
 <div class="flex items-center gap-2">
+  <!-- Language picker -->
+  <LanguagePicker lang={lang} />
   <!-- Theme toggle is always visible -->
   <ThemeIcon />
   <!-- Mobile Menu Button -->

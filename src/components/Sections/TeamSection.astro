@@ -1,6 +1,8 @@
 ---
 import HeadingText from "@components/UI/HeadingText.astro";
 import { Image } from "astro:assets";
+import { useTranslations } from "@i18n/utils";
+import type { Lang } from "@i18n/ui";
 
 interface SocialLink {
 	platform: "twitter" | "github" | "website";
@@ -54,13 +56,20 @@ const teamMembers: TeamMember[] = [
 		],
 	},
 ];
+
+export interface Props {
+  lang?: Lang;
+}
+
+const { lang = "es" } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <div class="w-full px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto autoShow">
 	<div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
-		<HeadingText level={2} text="Meet the" className="text-4xl" textGradient="crew" />
+		<HeadingText level={2} text={t["team.headingStart"]} className="text-4xl" textGradient={t["team.headingGradient"]} />
 
-		<p class="mt-1 text-(--primary)">Creative people</p>
+		<p class="mt-1 text-(--primary)">{t["team.subtitle"]}</p>
 	</div>
 
 	<div class="grid grid-cols-2 lg:grid-cols-4 gap-8">

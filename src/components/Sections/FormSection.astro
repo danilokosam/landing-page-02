@@ -1,12 +1,16 @@
 ---
 import HeadingText from "@components/UI/HeadingText.astro";
+import { useTranslations } from "@i18n/utils";
+import type { Lang } from "@i18n/ui";
 
 interface Props {
   id?: string;
   formGuid: string;
+  lang?: Lang;
 }
 
-const { id, formGuid } = Astro.props;
+const { id, formGuid, lang = "es" } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section id={id} class="mt-24 scroll-mt-24 autoShow">
@@ -23,39 +27,36 @@ const { id, formGuid } = Astro.props;
         <div
           class="inline-flex items-center rounded-full border border-(--primary-border) bg-(--primary-soft) px-4 py-1 text-sm font-medium text-(--primary)"
         >
-          Project inquiry
+          {t["form.badge"]}
         </div>
 
         <HeadingText
           level={2}
-          text="Tell us about your"
-          textGradient="next idea"
+          text={t["form.headingStart"]}
+          textGradient={t["form.headingGradient"]}
           className="mt-5 max-w-lg text-3xl font-bold tracking-tight md:text-5xl"
         />
 
         <p class="mt-4 max-w-xl text-base leading-7 text-(--muted) md:text-lg">
-          Share the basics and we will have a clear starting point for the
-          conversation. This demo form is designed to preview the experience and
-          includes simple client-side input validation.
+          {t["form.subtitle"]}
         </p>
 
         <div class="mt-8 grid gap-4 sm:grid-cols-2">
           <div
             class="md:info-card rounded-lg md:border-2 border-(--card-border) md:p-4"
           >
-            <p class="text-sm font-semibold text-(--text)">Fast contact</p>
+            <p class="text-sm font-semibold text-(--text)">{t["form.fastContact"]}</p>
             <p class="mt-2 text-sm leading-6 text-(--muted)">
-              Leave your name and phone number so we can follow up with context.
+              {t["form.fastContactDesc"]}
             </p>
           </div>
 
           <div
             class="md:info-card rounded-lg md:border border-(--card-border) md:p-4"
           >
-            <p class="text-sm font-semibold text-(--text)">Clear brief</p>
+            <p class="text-sm font-semibold text-(--text)">{t["form.clearBrief"]}</p>
             <p class="mt-2 text-sm leading-6 text-(--muted)">
-              A short project idea helps frame scope, goals and the right next
-              step.
+              {t["form.clearBriefDesc"]}
             </p>
           </div>
         </div>
@@ -75,13 +76,13 @@ const { id, formGuid } = Astro.props;
               class="mb-2 block text-sm font-medium text-(--text)"
               for="firstname"
             >
-              Name
+              {t["form.labelName"]}
             </label>
             <input
               id="firstname"
               name="firstname"
               type="text"
-              placeholder="Your full name"
+              placeholder={t["form.placeholderName"]}
               required
               minlength="1"
               maxlength="80"
@@ -99,13 +100,13 @@ const { id, formGuid } = Astro.props;
               class="mb-2 block text-sm font-medium text-(--text)"
               for="email"
             >
-              Email
+              {t["form.labelEmail"]}
             </label>
             <input
               id="email"
               name="email"
               type="email"
-              placeholder="you@example.com"
+              placeholder={t["form.placeholderEmail"]}
               required
               maxlength="254"
               class="form-field w-full rounded-lg border border-(--card-border) bg-(--bg) px-4 py-3 text-base text-(--text) placeholder:text-(--muted)"
@@ -122,13 +123,13 @@ const { id, formGuid } = Astro.props;
               class="mb-2 block text-sm font-medium text-(--text)"
               for="phone"
             >
-              Phone
+              {t["form.labelPhone"]}
             </label>
             <input
               id="phone"
               name="phone"
               type="tel"
-              placeholder="+51 999 999 999"
+              placeholder={t["form.placeholderPhone"]}
               required
               minlength="7"
               maxlength="20"
@@ -148,12 +149,12 @@ const { id, formGuid } = Astro.props;
               class="mb-2 block text-sm font-medium text-(--text)"
               for="message"
             >
-              Project idea
+              {t["form.labelMessage"]}
             </label>
             <textarea
               id="message"
               name="message"
-              placeholder="Describe your project idea"
+              placeholder={t["form.placeholderMessage"]}
               required
               minlength="10"
               maxlength="500"
@@ -176,9 +177,11 @@ const { id, formGuid } = Astro.props;
             <button
               id="submit-btn"
               type="submit"
+              data-label-default={t["form.submitBtn"]}
+              data-label-sending={t["form.sending"]}
               class="inline-flex items-center justify-center rounded-lg bg-(--primary) px-6 py-3.5 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-1 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              Start Your Project
+              {t["form.submitBtn"]}
             </button>
           </div>
         </div>
@@ -303,7 +306,7 @@ const { id, formGuid } = Astro.props;
     clearErrors();
 
     submitBtn.disabled = true;
-    submitBtn.textContent = "Sending...";
+    submitBtn.textContent = submitBtn.dataset.labelSending ?? "Sending...";
 
     try {
       const formData = new FormData(form);
@@ -337,7 +340,7 @@ const { id, formGuid } = Astro.props;
       feedback.className = "text-sm font-medium text-red-500";
     } finally {
       submitBtn.disabled = false;
-      submitBtn.textContent = "Start Your Project";
+      submitBtn.textContent = submitBtn.dataset.labelDefault ?? "Start Your Project";
     }
   });
 </script>

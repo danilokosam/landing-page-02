@@ -1,50 +1,16 @@
 ---
 import HeadingText from "@components/UI/HeadingText.astro";
+import { useTranslations } from "@i18n/utils";
+import type { Lang } from "@i18n/ui";
 
-const faqs = [
-  {
-    question: "What digital marketing services do you offer?",
-    answer:
-      "We offer SEO, SEM, social media management, email marketing, content marketing, and online advertising on Google Ads, Meta Ads, and LinkedIn Ads to maximize your visibility.",
-  },
-  {
-    question: "How long does it take to see results?",
-    answer:
-      "Organic SEO results are visible in 3-6 months, while paid campaigns can generate leads from day one. We create customized strategies based on your specific goals.",
-  },
-  {
-    question: "Do you develop custom websites or use templates?",
-    answer:
-      "All our websites are 100% custom-built, conversion-optimized, and tailored to your brand. We never use generic templates.",
-  },
-  {
-    question: "Are the web designs responsive?",
-    answer:
-      "Yes, all our websites are fully responsive and optimized for mobile, tablet, and desktop. We prioritize user experience across all devices.",
-  },
-  {
-    question: "What does a complete web project include?",
-    answer:
-      "It includes UI/UX design, frontend/backend development, technical SEO optimization, form integration, hosting, domain, and training so you can manage your content.",
-  },
-  {
-    question: "Do you offer website maintenance?",
-    answer:
-      "Yes, we offer monthly maintenance that includes security updates, backups, performance optimization, and 24/7 technical support.",
-  },
-  {
-    question: "Can I make changes to my website later?",
-    answer:
-      "Absolutely! We deliver an intuitive CMS (WordPress, Webflow, or headless) plus training so you can make all the changes you need independently.",
-  },
-  {
-    question: "What makes your agency different?",
-    answer:
-      "We combine marketing strategy with high-performance web development. We don't just create beautiful websites, we generate measurable results that grow your business.",
-  },
-];
+export interface Props {
+  id?: string;
+  lang?: Lang;
+}
 
-const { id } = Astro.props;
+const { id, lang = "es" } = Astro.props;
+const t = useTranslations(lang);
+const faqs = t["faq.items"];
 ---
 
 <section
@@ -57,14 +23,13 @@ const { id } = Astro.props;
     >
       <HeadingText
         level={2}
-        text="Most asked "
-        textGradient="FAQ's"
+        text={t["faq.headingStart"]}
+        textGradient={t["faq.headingGradient"]}
         className="text-center text-3xl font-bold md:text-5xl tracking-tight"
       />
 
       <p class="section-muted max-w-2xl mx-auto">
-        We're here to help you and solve doubts. Find answers to the most common
-        questions below.
+        {t["faq.subtitle"]}
       </p>
     </div>
 

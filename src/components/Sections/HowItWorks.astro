@@ -11,7 +11,7 @@ const steps = [
       "We listen to your goals, analyze your market, and define a tailored strategy that aligns with your business objectives.",
   },
   {
-    icon: "layout",
+    icon: "map-pin",
     title: "Design & Planning",
     description:
       "We create wireframes and visual designs aligned with your brand identity, ensuring every detail serves a purpose.",
@@ -31,17 +31,16 @@ const steps = [
 ];
 ---
 
-<section id={id} class="mt-32 text-center scroll-mt-24 autoShow">
+<section id={id} class="mt-32 text-center scroll-mt-24 ">
   <div class="space-y-4">
     <HeadingText
       level={2}
-      text="How It"
-      textGradient="Works"
-      className="text-center text-3xl font-bold md:text-5xl tracking-tight"
+      text={t["process.headingStart"]}
+      textGradient={t["process.headingGradient"]}
+      className="text-center text-3xl font-bold md:text-5xl tracking-tight autoShow"
     />
     <p class="section-muted max-w-2xl mx-auto">
-      From the first conversation to launch and beyond, our streamlined process
-      ensures clarity, speed, and results at every stage.
+      {t["process.subtitle"]}
     </p>
   </div>
 

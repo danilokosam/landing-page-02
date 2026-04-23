@@ -1,55 +1,30 @@
 ---
-import { Image } from "astro:assets";
 import logoLight from "@assets/arka-1-light.svg";
 import logoDark from "@assets/arka-1-dark.svg";
+import { useTranslations } from "@i18n/utils";
+import type { Lang } from "@i18n/ui";
+
+export interface Props {
+  lang?: Lang;
+}
+
+const { lang = "es" } = Astro.props;
+const t = useTranslations(lang);
 
 const footerOptions = [
 	{
-		title: "About",
+		title: t["footer.about"],
 		labels: [
-			{
-				label: "Services",
-				url: "#services",
-			},
-			{
-				label: "About us",
-				url: "#about",
-			},
-			{
-				label: "How it works",
-				url: "#process",
-			},
-			{
-				label: "FAQ",
-				url: "#faq",
-			},
+			{ label: t["footer.services"], url: "#services" },
+			{ label: t["footer.aboutUs"], url: "#about" },
+			{ label: t["footer.howItWorks"], url: "#process" },
+			{ label: t["footer.faq"], url: "#faq" },
 		],
 	},
-
-	// {
-	// 	title: "Follow US",
-	// 	labels: [
-	// 		{
-	// 			label: "Github",
-	// 			url: "#",
-	// 		},
-	// 		{
-	// 			label: "Tiktok",
-	// 			url: "#",
-	// 		},
-	// 		{
-	// 			label: "Instagram",
-	// 			url: "#",
-	// 		},
-	// 	],
-	// },
 	{
-		title: "Contact",
+		title: t["footer.contact"],
 		labels: [
-			{
-				label: "Tall with us",
-				url: "#project-form",
-			},
+			{ label: t["footer.talkWithUs"], url: "#project-form" },
 		],
 	},
 ];
@@ -70,7 +45,7 @@ const footerOptions = [
 			</span>
 
 			<p class="mt-2 max-w-72 text-sm text-slate-500">
-				We build bold digital products and high-performance brand experiences.
+				{t["footer.tagline"]}
 			</p>
 		</div>
 		<nav class="w-full grid grid-cols-2 md:grid-cols-3 max-w-md text-start gap-10">

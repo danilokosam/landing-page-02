@@ -1,47 +1,25 @@
 ---
 import HeadingText from "@components/UI/HeadingText.astro";
 import FeatureCard from "@components/UI/FeatureCard.astro";
-const { id } = Astro.props;
+import { useTranslations } from "@i18n/utils";
+import type { Lang } from "@i18n/ui";
 
-const services = [
-  {
-    title: "Landing Pages",
-    description:
-      "High-converting landing pages designed to capture leads, validate offers, and turn traffic into real business opportunities.",
-  },
-  {
-    title: "E-commerce Development",
-    description:
-      "Scalable online stores with optimized product flows, secure checkout, and performance-focused UX to increase sales.",
-  },
-  {
-    title: "CRM Integration",
-    description:
-      "Smart CRM setups that centralize leads, automate follow-ups, and give your sales team full visibility of every opportunity.",
-  },
-  {
-    title: "CMS Implementation",
-    description:
-      "Flexible content management systems so your team can update pages, publish content, and scale your website without developer dependency.",
-  },
-  {
-    title: "SEO Optimization",
-    description:
-      "Technical and on-page SEO improvements that boost search visibility, attract qualified traffic, and support long-term growth.",
-  },
-  {
-    title: "Maintenance & Support",
-    description:
-      "Ongoing monitoring, updates, and technical support to keep your digital platform secure, fast, and always available.",
-  },
-];
+export interface Props {
+  id?: string;
+  lang?: Lang;
+}
+
+const { id, lang = "es" } = Astro.props;
+const t = useTranslations(lang);
+
+const services = t["services.items"];
 ---
 
 <section id={id} class="mt-24 scroll-mt-24 autoShow">
   <HeadingText
     level={2}
-    text="Our "
-    textGradient="Services"
+    text={t["services.headingStart"]}
+    textGradient={t["services.headingGradient"]}
     className="text-left text-3xl font-bold md:text-5xl tracking-tight"
   />
 
