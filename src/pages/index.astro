@@ -8,6 +8,7 @@ import ServicesSection from "@components/Sections/ServicesSection.astro";
 import HeroSection from "@components/Sections/HeroSection.astro";
 import FormSection from "@components/Sections/FormSection.astro";
 import TeamSection from "@components/Sections/TeamSection.astro";
+import BgSection from "@components/Sections/BgSection.astro";
 const formId = import.meta.env.PUBLIC_HUBSPOT_FORM_ID;
 const lang = "es" as const;
 ---
@@ -17,7 +18,8 @@ const lang = "es" as const;
   description="Ayudamos a marcas a destacar con diseño web creativo, branding estratégico y servicios de marketing orientados al crecimiento. Construye tu presencia digital con MarketingPlus."
   lang={lang}
 >
-  <main class="agency-container page-fade-in">
+  <main class="agency-container relative page-fade-in">
+    <BgSection/>
     <HeroSection lang={lang} />
     <ServicesSection id="services" lang={lang} />
     <AboutSection id="about" lang={lang} />

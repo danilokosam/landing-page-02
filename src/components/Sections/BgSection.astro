@@ -1,0 +1,39 @@
+---
+
+---
+
+<div
+	class="w-32 h-32  shadow-2xl rotate-animation blur-3xl bg-linear-to-l from-[var(--primary)] via-[var(--primary)] to-[var(--secondary)]  pulse-animation -translate-x-1/2 absolute -top-10 left-1/2 right-1/2  rounded-full "
+>
+</div>
+
+<style>
+	.rotate-animation {
+		rotate: 180deg;
+		animation: rotation 10s linear infinite;
+	}
+	.pulse-animation {
+		animation: pulse 4s infinite both ease-in-out;
+	}
+
+	@keyframes pulse {
+		0% {
+			opacity: 0.2;
+		}
+		50% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0.2;
+		}
+	}
+
+	@keyframes rotation {
+		from {
+			rotate: 0deg;
+		}
+		to {
+			rotate: 360deg;
+		}
+	}
+</style>
