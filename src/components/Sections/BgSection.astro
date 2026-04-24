@@ -2,18 +2,24 @@
 
 ---
 
-<div
-	class="w-32 h-32  shadow-2xl rotate-animation blur-3xl bg-linear-to-l from-[var(--primary)] via-[var(--primary)] to-[var(--secondary)]  pulse-animation -translate-x-1/2 absolute -top-10 left-1/2 right-1/2  rounded-full "
->
-</div>
+<div class="bg-blob"></div>
 
 <style is:inline>
-	.rotate-animation {
-		rotate: 180deg;
-		animation: rotation 10s linear infinite;
-	}
-	.pulse-animation {
-		animation: pulse 4s infinite both ease-in-out;
+	.bg-blob {
+		width: 12rem;
+		height: 12rem;
+		position: absolute;
+		top: -1.5rem;
+		left: 50%;
+		right: 50%;
+		transform: translateX(-50%);
+		border-radius: 9999px;
+		filter: blur(64px);
+		background: linear-gradient(to left, var(--primary), var(--primary), var(--secondary));
+		box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+		animation:
+			rotation 10s linear infinite,
+			pulse 4s infinite both ease-in-out;
 	}
 
 	@keyframes pulse {
