@@ -209,8 +209,8 @@ const navItems = [
 
     const observerOptions = {
       root: null,
-      rootMargin: "-50% 0px -50% 0px", // Trigger when section is in the middle of viewport
-      threshold: 0,
+      rootMargin: "-80px 0px 0px 0px", // 80px arriba, igual a la altura del header sticky
+      threshold: 0.1,
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
