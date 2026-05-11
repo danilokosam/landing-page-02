@@ -18,7 +18,7 @@ export const es = {
   "hero.titleStart": "Construye una marca que",
   "hero.titleAccent": "destaque online",
   "hero.subtitle":
-    "Diseñamos sitios web, lanzamos campañas y creamos experiencias que convierten visitantes en clientes fieles.",
+    "Creamos y desarrollamos sitios y aplicaciones web que cambian tu forma de trabajar y hacer negocios en línea.",
   "hero.cta": "Inicia tu proyecto",
   "hero.stat1Label": "Proyectos lanzados",
   "hero.stat2Label": "Retención de clientes",
@@ -30,7 +30,7 @@ export const es = {
   "about.p1":
     "En Arka, ayudamos a marcas y empresas a construir una presencia digital que luce profesional y, sobre todo, genera resultados reales. Trabajamos con un proceso claro desde el primer día: escuchamos tus objetivos, definimos un camino simple y te acompañamos en cada paso.",
   "about.p2":
-    "Ofrecemos servicios de sitios web, landing pages, desarrollo de e-commerce, SEO e implementación de CMS. Nuestro enfoque es entregar soluciones prácticas, fáciles de gestionar y alineadas con tu negocio, sin complejidades innecesarias ni promesas vacías.",
+    "Ofrecemos servicios de para crear Landing Page, desarrollar y cr E-comerce, optimizar SEO e implementar CMS. Nuestro enfoque es entregar soluciones prácticas que sean fáciles de gestionar y alineadas con tu negocio, sin complejidad innecesaria y sin promesas vacías.",
   "about.value1": "Comunicación clara",
   "about.value2": "Proceso transparente",
   "about.value3": "Enfoque en resultados",
@@ -43,27 +43,27 @@ export const es = {
     {
       title: "Landing Pages",
       description:
-        "Landing pages de alta conversión diseñadas para capturar leads, validar ofertas y convertir tráfico en oportunidades de negocio reales.",
+        "Crear y  diseño landing pages de alta conversión diseñadas para capturar leads, validar ofertas y convertir tráfico en oportunidades de negocio reales.",
     },
     {
       title: "Desarrollo E-commerce",
       description:
-        "Tiendas online escalables con flujos de producto optimizados, checkout seguro y UX enfocada en el rendimiento para aumentar ventas.",
+        "Desarrollo de tiendas online escalables con flujos de producto optimizados, checkout seguro y UX enfocada en el rendimiento para aumentar ventas.",
     },
     {
       title: "Integración CRM",
       description:
-        "Configuraciones inteligentes de CRM que centralizan leads, automatizan seguimientos y dan a tu equipo de ventas visibilidad total de cada oportunidad.",
+        "Configuraciones y desarrollo inteligentes de CRM que centralizan leads, automatizan seguimientos y dan a tu equipo de ventas visibilidad total de cada oportunidad.",
     },
     {
       title: "Implementación CMS",
       description:
-        "Sistemas de gestión de contenido flexibles para que tu equipo pueda actualizar páginas, publicar contenido y escalar tu sitio sin depender de desarrolladores.",
+        "Implementación de CMS para que tu equipo pueda actualizar páginas, publicar contenido y escalar tu sitio sin depender de desarrolladores.",
     },
     {
       title: "Optimización SEO",
       description:
-        "Mejoras técnicas y on-page de SEO que aumentan la visibilidad en buscadores, atraen tráfico calificado y apoyan el crecimiento a largo plazo.",
+        "Optimización y on-page de SEO que aumentan la visibilidad en buscadores, atraen tráfico calificado y apoyan el crecimiento a largo plazo.",
     },
     {
       title: "Mantenimiento y Soporte",

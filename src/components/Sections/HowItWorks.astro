@@ -13,32 +13,7 @@ export interface Props {
 const { id, lang = "es" } = Astro.props;
 const t = useTranslations(lang);
 
-const steps = [
-  {
-    icon: "shield-check",
-    title: "Consultation",
-    description:
-      "We listen to your goals, analyze your market, and define a tailored strategy that aligns with your business objectives.",
-  },
-  {
-    icon: "layout",
-    title: "Design & Planning",
-    description:
-      "We create wireframes and visual designs aligned with your brand identity, ensuring every detail serves a purpose.",
-  },
-  {
-    icon: "trending-up",
-    title: "Development",
-    description:
-      "We build your project with modern technologies, optimized for performance, SEO, and scalability from day one.",
-  },
-  {
-    icon: "rocket",
-    title: "Launch & Support",
-    description:
-      "We deploy, monitor, and continuously improve your digital presence to ensure long-term growth and reliability.",
-  },
-];
+const steps = t["process.steps"];
 ---
 
 <section id={id} class="mt-24 text-center scroll-mt-24">
